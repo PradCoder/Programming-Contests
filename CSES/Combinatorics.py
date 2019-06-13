@@ -22,7 +22,7 @@ def main():
     print(string1,len(string1))
     print(string2,len(string2))
     #maximum recursion until 2959 using memoization the size of the output is 891 numbers long
-    #this is impossible to do in c/c++ and Java without
+    #this is impossible to do in c/c++ and Java without a BigInteger class
     #without memoization bigger numbers (>=100) are not possible in less than 1 second
 
 if __name__ == "__main__":
