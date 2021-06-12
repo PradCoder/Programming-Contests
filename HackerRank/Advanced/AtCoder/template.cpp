@@ -22,17 +22,10 @@ const ll INF = 1e18;
 const int32_t M = 1e9+7;
 const int32_t MM=998244353;
 
-template<typename T>
-void Print(T value){
-	cout << values <<"\n";
-}
-
-
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	Print<int>(5);
 	int a,b;
 	string x;
 	cin >> a >> b >> x;

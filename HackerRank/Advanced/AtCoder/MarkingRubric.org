@@ -1,0 +1,6 @@
+* Questions we asked ourselves.
+
+11111 0.5 0.5  0.5 0.5 111
+
+I don't like there graph for desireability and feasibility
+ 

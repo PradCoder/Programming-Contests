@@ -1,0 +1,6 @@
+#!/bin/bash
+
+filename=$1
+filename="${1}.cpp"
+g++ -std=c++11 -O2 -Wall $filename -o $1
+echo "Try question E later"

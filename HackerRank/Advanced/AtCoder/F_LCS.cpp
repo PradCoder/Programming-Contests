@@ -22,20 +22,30 @@ const ll INF = 1e18;
 const int32_t M = 1e9+7;
 const int32_t MM=998244353;
 
-template<typename T>
-void Print(T value){
-	cout << values <<"\n";
-}
+/*
+    a x y b
+a   1 1 1 1
+b   1 1 1 2
+y   1 1 2 2 
+x   1 2 2 3
+b   1 2 2 3
 
+
+
+*/
+string solve(string s, string t){
+    vector<pi> dp = vector<pi>(s.length()*t.length());
+
+    return s
+}
 
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	Print<int>(5);
 	int a,b;
-	string x;
-	cin >> a >> b >> x;
-	cout << a << " " << b << " " << x << "\n";
+	string s,t;
+	cin >> s >> t;
+	cout << solve(s,t)<< "\n";
 }
 
