@@ -44,5 +44,6 @@ class BIT
 
 
 int main(){
+
 return 0;
 }
