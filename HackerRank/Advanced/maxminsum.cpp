@@ -22,13 +22,32 @@ const ll INF = 1e18;
 const int32_t M = 1e9+7;
 const int32_t MM=998244353;
 
+int solve0(vi v){
+    return 0;
+}
+int solve1(vi v){
+    int ans = v[0], sum = 0;
+    for(int r = 0; r < v.size(); ++r){
+        sum += v[r];
+        ans = max(ans,sum);
+        sum = max(sum,0);   
+    }
+   return ans; 
+}
+
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	int a,b;
-	string x;
-	cin >> a >> b >> x;
-	cout << a << " " << b << " " << x << "\n";
+	int t,n;
+    cin >> t;
+    for (int i = 0; i < t; i++){
+        cin >> n;
+        vi v = vi(n,0);
+        for(int j = 0; j < n; j++){
+            cin >> v[j];
+        }
+	    cout << solve0(v) << " " << solve1(v) << "\n";
+    } 
 }
 
