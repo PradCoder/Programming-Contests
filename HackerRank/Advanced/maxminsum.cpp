@@ -23,7 +23,18 @@ const int32_t M = 1e9+7;
 const int32_t MM=998244353;
 
 int solve0(vi v){
-    return 0;
+    int sum = 0;
+    sort(v.begin(),v.end());
+    if(v[v.size()-1] > 0){
+        for(int i : v){
+            if(i>=0){
+                sum += i;
+            }
+        }
+    }else{
+        sum = v[v.size()-1];
+    }
+    return sum;
 }
 int solve1(vi v){
     int ans = v[0], sum = 0;
@@ -47,7 +58,7 @@ int main(){
         for(int j = 0; j < n; j++){
             cin >> v[j];
         }
-	    cout << solve0(v) << " " << solve1(v) << "\n";
+	    cout << solve1(v) << " " << solve0(v) << "\n";
     } 
 }
 
