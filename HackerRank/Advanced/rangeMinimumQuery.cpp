@@ -30,9 +30,25 @@ const int32_t MM=998244353;
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
+/** Range sum query
+    int st[MAXN][K + 1];
+    for (int i = 0; i < N; i++){
+        st[i][0] = f(array[i]);
+    }
 
-	int a,b;
-	string x;
+    for(int j = 1; j <= K; j++){
+        for(int i = 0; i + (1 << j) <= N; i++){
+            st[i][j] = f(st[i][j-1], st [i + (1 << (j -1))][j - 1]);
+        }
+    }
+    **/
+    int log[M];
+    log[1] = 0;
+    for (int i = 2; i <= M; i++){
+        log[i] = log[i/2] + 1;
+    }
+    K = math.log(K);
+    int st[M][K + 1]
 	cin >> a >> b >> x;
 	cout << a << " " << b << " " << x << "\n";
 }
