@@ -27,6 +27,12 @@ const ll INF = 1e18;
 const int32_t M = 1e9+7;
 const int32_t MM=998244353;
 
+int solve(int st[][],int log[], int l, int r){
+    int j = log[r - l +1];
+    int minimum = min(st[l][j], st[r - (1 << j) + 1][j]);
+    return minimum;
+}
+
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
@@ -47,9 +53,16 @@ int main(){
     for (int i = 2; i <= M; i++){
         log[i] = log[i/2] + 1;
     }
+
     K = math.log(K);
-    int st[M][K + 1]
+    int st[M][K + 1];
+
+    for (int j = 1; j <= K; j++){
+        for(int i = 0; i + (1 << j) <= N; i++){
+            st[i][j] = min(st[i][j-1], st[i + (1 << (j - 1))][j - 1]);
+        }
+    }
+
 	cin >> a >> b >> x;
 	cout << a << " " << b << " " << x << "\n";
 }
-
