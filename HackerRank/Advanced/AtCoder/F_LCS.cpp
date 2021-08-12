@@ -17,6 +17,7 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
+typedef pair<int,string> ps;
 
 const ll INF = 1e18;
 const int32_t M = 1e9+7;
@@ -34,16 +35,31 @@ b   1 2 2 3
 
 */
 string solve(string s, string t){
-    vector<pi> dp = vector<pi>(s.length()*t.length());
-
-    return s
+	int n = s.length();
+	int m = t.length();
+    vector<vector<pair<int,<pair<int,int>>>> dp(a.length()+1) = vector<vector<int>>(n+1,vector<int>(m+1, 0));
+	REP0(i,0,n){
+		REP0(j,0,m){
+			if(s[i] == t[j]){
+				dp[i+1][j+1] = 1+dp[i][j] ; 
+			}else{
+				dp[i+1][j+1] = (dp[i][j+1] > dp[i+1][j]) ? dp[i][j+1] : dp[i+1][j];
+			}
+		}
+	}
+	REP0(i,0,n+1){
+		REP0(j,0,m+1){
+			cout << "(" << dp[i][j] << ")";
+		}
+		cout << "\n";
+	}
+    return "s";//dp[n][m];
 }
 
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	int a,b;
 	string s,t;
 	cin >> s >> t;
 	cout << solve(s,t)<< "\n";
