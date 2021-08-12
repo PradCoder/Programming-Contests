@@ -27,9 +27,10 @@ typedef pair<int,int> pi;
 const ll INF = 1e18;
 const int32_t M = 1e9+7;
 const int32_t MM=998244353;
-#define MAXN  (int)1e5
+//#define MAXN  (int)1e5
+const int maxn = 1000000;
 
-int solve(int st[MAXN][MAXN], int l, int r){
+int solve(int st[maxn][maxn], int l, int r){
     int j = (int) log2(r - l +1);
     int minimum = min(st[l][j], st[r - (1 << j) + 1][j]);
     return minimum;
@@ -39,14 +40,15 @@ int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 // Range sum query
-    int st[MAXN][MAXN];
+    int st[maxn][maxn];
     vector<pi> v = vector<pi>();
     int n,q;
-    cin >> n >> q;
+    cin >> n;
      
     for (int i = 0; i < n; i++){
         cin >> st[i][0];
     }
+    cin >> q;
     for (int i = 0; i< q;i++){
         int a,b;
         cin >> a >> b;
