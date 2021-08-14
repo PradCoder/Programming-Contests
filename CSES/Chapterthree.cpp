@@ -60,7 +60,7 @@ int main(){
     */
 
     /*string operations*/
-    string a  = "hatti"
+    string a  = "hatti";
     string b = a+a;
     cout << b << "\n";//hattihatti
     b[5] = 'v';

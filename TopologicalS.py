@@ -5,11 +5,11 @@ class DepthFirstOrd:
 		self.reversePost = []
 		self.marked = [False] * len(G)
 		
-		for i in range(len(marked)):
-			if(not marked[i]) dfs(G,v);
+		for i in range(len(self.marked)):
+			if(not self.marked[i]): dfs(G,v)
 	
 	def dfs(G,v):
-		marked[v] = true
+		self.marked[v] = True
 		self.pre.append(v)
 		self.marked[v] = True
 		for i in G[v]:
@@ -31,6 +31,7 @@ def main():
 		s,e = map(int,input().split())
 		G[s] = e #exclude one if un directed
 		G[e] = s
+		
 def dfs(G,v):
 	global visited;
 	stack = []

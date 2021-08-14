@@ -80,8 +80,8 @@ int main(){
         REP0(i,0,m){
            int t,f,w;
            cin >> t >> f >> w;
-           pair<int,int> p1(f-1,w);
-           pair<int,int> p2(t-1,w);
+           pi p1(f-1,w);
+           pi p2(t-1,w);
            adj[t-1].push_back(p1);
            adj[f-1].push_back(p2);
         }
