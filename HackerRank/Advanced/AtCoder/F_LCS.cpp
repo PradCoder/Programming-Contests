@@ -18,6 +18,7 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
+typedef pair<int,string> ps;
 
 const ll INF = 1e9+5;
 //const int32_t M = 1e9+7;
