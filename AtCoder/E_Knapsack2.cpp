@@ -12,7 +12,7 @@ typedef vector<int> vi;
 typedef vector<long long> vl;
 typedef pair<int,int> pi;
 
-const ll INF = 1e18;
+const ll INF = 1e18 + 5;
 const int32_t M = 1e9+7;
 const int32_t MM=998244353;
 
@@ -86,74 +86,47 @@ current: minimize weights by meeting value [i]
 3 5 0   3     4    7    8    9   12
 
 */
-bool compare(vl i, vl j){
-	return (i[0] < j[0]);
+
+void max_self(ll& a, ll b){
+	a = max(a,b);
 }
 
-long long solve(vector<vl> vec, int w, int n){
-	ll sum_value = 0;
-	for(auto i : vec){
-		sum_value += i[1];
-	}
-	sort(vec.begin(), vec.end(), compare);
-	for(auto i: vec){
-		cout << i[0] << " " << i[1] << "\n";
-	}
-	vector<ll> dp = vector<ll>(sum_value+1,0); // current dp
-	vector<ll> ps = vector<ll>(sum_value+1,0); // past states
-	dp[0] = 0; //minimum value to have value 0
-	for(int i = 0; i < n; i++){
-		for(int j=0; j <= sum_value;j++){
-			if(j - vec[i][1] < 0){
-				/*
-				Jump to where changes begin
-				*/
-				if(i==0){
-					j=vec[i][1];
-					dp[j] = vec[i][0];
-				}else{
-					j=vec[i][1];
-					dp[j] = max(vec[i][0]+ps[j-vec[i][1]],ps[j]);
-				}
-			}else{
-				/*
-				Start updating states
-				*/
-				if(i==0){
-					dp[j] =  vec[i][0];
-				}else{
-					dp[j] = max(vec[i][0]+ps[j-vec[i][1]],ps[j]);
-				}
-			}
-		}
-		ps = dp;
-		REP1(j,0,sum_value){
-			printf("%lld ", dp[j]);
-		}
-		printf("\n");
-	}
-	ll answer = sum_value;
-	for (int i = 0; i<=sum_value; i++){
-		if(dp[i] == w){
-			answer = min(answer, (ll) i);
-		}
-	}
-
-	return answer;
+void min_self(ll& a, ll b){
+	a = min(a,b);
 }
 
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	int n,w;
-	cin >> n >> w;
-	
-	vector<vl> v = vector<vl>(n, vl(2,0));
-	for(int i = 0; i < n; i++){
-		cin >> v[i][0] >> v[i][1];
-	}
-	cout << solve(v,w,n) << "\n";
+	int n, W;
+	scanf("%d%d", &n, &W);
+	vector<int> weight(n), value(n);
 
+	for(int i = 0; i < n; ++i){
+		scanf("%d%d", &weight[i], &value[i]);
+	}
+
+	int sum_value = 0;
+	for(int x : value){
+		sum_value += x;
+	}
+	
+	vector<ll> dp(sum_value + 1, INF); // 0 ... W
+	dp[0] = 0;
+
+	for(int item = 0; item < n; ++item){
+		for(int value_already = sum_value - value[item]; value_already >= 0; --value_already){
+			min_self(dp[value_already+value[item]], dp[value_already] + weight[item]);
+		}
+	}
+
+	ll answer = 0;
+	for(int i = 0; i <= sum_value; ++i){
+		if(dp[i] <= W){
+			answer = max(answer, (ll) i);
+		}
+	}
+	printf("%lld\n", answer);
 }
 

@@ -87,4 +87,3 @@ int main(){
 	cin >> s >> t;
 	cout << solve(s,t)<< "\n";
 }
-
