@@ -3,6 +3,7 @@ ID: 2010pes1
 TASK: beads
 LANG: C++
 */
+
 #include "bits/stdc++.h"
 
 using namespace std;
@@ -25,8 +26,9 @@ int solve(int n,string str){
     countr = 0;
     char c; 
 
-    for(int i = 0; i < 2*n; i++){
+    for(int i = 0; i < 2*n-1; i++){
         c = nstr[i];
+        cn = nstr[i+1];
 
         if(c == 'w'){
             countw++;
@@ -39,9 +41,22 @@ int solve(int n,string str){
             countb += countw;
             countw = 0;
             countb++;
+            mx2 = max(countr+countb, countb+countr);
         }
+
+        if(c != cn){
+            if(c == 'r'){
+                
+            }
+            if(c == 'b'){
+            
+            }
+            if(c == 'w'){
+            
+            }    
+        }
+
     }
-    
     
     countw = 0;
     countb = 0;
@@ -64,6 +79,7 @@ int solve(int n,string str){
     }
     return 
 }
+
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
