@@ -36,19 +36,34 @@ int solve(int n,string str){
             countr += countw;
             countw = 0;
             countr++;
-            mx1 = max(countr+countb, countb+countr);
+            mx1 = max(countr+countb, countb);
         }else if(c == 'b'){
             countb += countw;
             countw = 0;
             countb++;
-            mx2 = max(countr+countb, countb+countr);
+            mx2 = max(countr+countb, countr);
         }
 
         if(c != cn){
             if(c == 'r'){
-                
+                if(cn == 'b'){
+                    countb++;
+                }else if(cn == 'r'){
+                    countr++;
+                    mx1 = (countr+countw+countb,mx2);
+                }else{
+                    countw++;
+                }
             }
             if(c == 'b'){
+                if(cn == 'b'){
+                    countb++;
+                    mx2 = (countr+countw+countb,mx1);
+                }else if(cn == 'r'){
+                    countr++;
+                }else{
+                    countw++;
+                }
             
             }
             if(c == 'w'){
