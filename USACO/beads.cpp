@@ -19,7 +19,7 @@ int mod (int v, int n){
 int solve (int n,string str){
 
     int countw, countb, countr;
-    int mx1, mx2;
+    int mx1 = 0, mx2 = 0;
     string nstr = str+str;
 
     countw = 0;
@@ -30,7 +30,11 @@ int solve (int n,string str){
     // take and travel along w
     // add w to b travel after b, 
     // switch to r travel after r, travel after w
-    // travel after r, 
+    // travel after r, hit b calculate max b-r string save to variable
+    // take b, travel to next terminal r
+    //
+    // In general take starting term then travel to terminal term, compare distance
+    // with current and previous
     for(int i = 0; i < 2*n-1; i++){
         c = nstr[i];
         cn = nstr[i+1];
