@@ -16,7 +16,8 @@ int mod (int v, int n){
     return (n + (v % n)) % n;
 }
 
-int solve(int n,string str){
+int solve (int n,string str){
+
     int countw, countb, countr;
     int mx1, mx2;
     string nstr = str+str;
@@ -25,7 +26,11 @@ int solve(int n,string str){
     countb = 0;
     countr = 0;
     char c; 
-
+    // wwwbbrwrbrbrrbrbrwrwwrbwrwrrb | wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
+    // take and travel along w
+    // add w to b travel after b, 
+    // switch to r travel after r, travel after w
+    // travel after r, 
     for(int i = 0; i < 2*n-1; i++){
         c = nstr[i];
         cn = nstr[i+1];
