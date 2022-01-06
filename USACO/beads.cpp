@@ -25,7 +25,10 @@ int solve (int n,string str){
     countw = 0;
     countb = 0;
     countr = 0;
-    char c; 
+
+    int counts = 0;
+    char c,cn; 
+    
     // wwwbbrwrbrbrrbrbrwrwwrbwrwrrb | wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
     // take and travel along w
     // add w to b travel after b, 
@@ -35,28 +38,31 @@ int solve (int n,string str){
     //
     // In general take starting term then travel to terminal term, compare distance
     // with current and previous
+    
     for(int i = 0; i < 2*n-1; i++){
         c = nstr[i];
         cn = nstr[i+1];
-
+        
         if(c == 'w'){
             countw++;
         }else if(c == 'r'){
             countr += countw;
             countw = 0;
+            counts++;
             countr++;
-            mx1 = max(countr+countb, countb);
+            mx1 = max(countr+countb, mx1);
         }else if(c == 'b'){
             countb += countw;
             countw = 0;
+            counts++;
             countb++;
-            mx2 = max(countr+countb, countr);
+            mx2 = max(countr+countb, mx2);
         }
 
         if(c != cn){
             if(c == 'r'){
                 if(cn == 'b'){
-                    countb++;
+                    mx1 = max(countr;
                 }else if(cn == 'r'){
                     countr++;
                     mx1 = (countr+countw+countb,mx2);
