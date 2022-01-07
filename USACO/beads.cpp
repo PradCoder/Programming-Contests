@@ -16,7 +16,7 @@ int mod (int v, int n){
     return (n + (v % n)) % n;
 }
 
-int solve (int n,string str){
+int solve1 (int n, string str){
 
     int countw, countb, countr;
     int mx1 = 0, mx2 = 0;
@@ -62,10 +62,9 @@ int solve (int n,string str){
         if(c != cn){
             if(c == 'r'){
                 if(cn == 'b'){
-                    mx1 = max(countr;
                 }else if(cn == 'r'){
                     countr++;
-                    mx1 = (countr+countw+countb,mx2);
+                    mx1 = max(countr+countw+countb,mx2);
                 }else{
                     countw++;
                 }
@@ -73,7 +72,7 @@ int solve (int n,string str){
             if(c == 'b'){
                 if(cn == 'b'){
                     countb++;
-                    mx2 = (countr+countw+countb,mx1);
+                    mx2 = max(countr+countw+countb,mx1);
                 }else if(cn == 'r'){
                     countr++;
                 }else{
@@ -107,7 +106,7 @@ int solve (int n,string str){
             countb++;
         }
     }
-    return 
+    return mx1;
 }
 
 int main(){
