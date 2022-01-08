@@ -11,7 +11,6 @@ using namespace std;
 int n;
 char s[355];
 
-
 int md(int j){
     while(j<0) j+=n;
     return j%n;
