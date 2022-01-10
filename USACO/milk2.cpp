@@ -8,6 +8,17 @@ LANG: C++
 
 using namespace std;
 
+/* So solving for longest interval works 
+ * solve1: by scanning for the intersects of schedules 
+ * solve2: by scanning for ranges 
+ *         sort for start and end time (of first task)
+ *         check if following ending time is below after first task end time
+ *         take difference between current task being scanned and next task
+ * 
+ * 
+ *
+ * 
+*/
 int solve1(int n, vector<pair<int,int>> v){
     int s,mx;
     s = v[0].first;
@@ -31,13 +42,17 @@ int solve2(int n, vector<pair<int,int>> v){
     s = v[0].second;
     mx = 0;
     int cal = 0;
-    for(int i = 0; i<n-1;i++){
-        if(v[i+1].first-s > 0){
-            cal = v[i+1].first - s;
+
+    for(int i = 1; i<n; i++){
+        if(v[i].second < s){
+            s = s;
+        }else{
+            s = v[i].second;
         }
-        s = v[i+1].second; 
+        cal = v[i+1].first - s;
         mx = max(cal,mx);
     }
+
     return mx;
 }
 
