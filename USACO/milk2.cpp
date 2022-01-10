@@ -25,12 +25,11 @@ int solve1(int n, vector<pair<int,int>> v){
     mx = v[0].second-s;
     int cal = 0;
     for(int i = 0; i<n-1;i++){
-        if(v[i].second >= v[i+1].first){
+        if(v[i+1].first < v[i].second){
             cal = v[i+1].second - s;
         }else{
             s = v[i+1].first;
             cal = v[i+1].second-s;
-
         }
         mx = max(cal,mx);
     }
