@@ -38,11 +38,13 @@ int solve(int n, vector<string> va, vector<string> vb){
                 mi = min(mi,1);
             }else if (v[i%n][j%n] == v[i%n][j%n]){
                 mi = min(mi,2);  
-            }else if (v[i%n][j%n] == [i%n][j%n]dfs){
+            }else if (v[i%n][j%n] == v[i%n][j%n]){
                 mi = min(mi,3); 
-            }else if (sdfsf == sdfs){
+            }else if (v[i%n][j%n] == v[i%n][j%n]){
                 mi = min(mi,4); 
-            }else if (
+            }else if (){
+            
+            }
         }
     }
     return mi;
