@@ -15,17 +15,15 @@ using namespace std;
  *         check if following ending time is below after first task end time
  *         take difference between current task being scanned and next task
  * 
- * 
- *
- * 
 */
+
 int solve1(int n, vector<pair<int,int>> v){
     int s,mx;
     s = v[0].first;
     mx = v[0].second-s;
     int cal = 0;
     for(int i = 0; i<n-1;i++){
-        if(v[i+1].first < v[i].second){
+        if(v[i+1].first <= v[i].second){
             cal = v[i+1].second - s;
         }else{
             s = v[i+1].first;
