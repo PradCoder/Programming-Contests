@@ -5,6 +5,7 @@ LANG: C++
 */
 
 #include "bits/stdc++.h"
+#include <utility>
 
 using namespace std;
 
@@ -33,8 +34,15 @@ using namespace std;
  * 2400 2600
  *
 */
-
+bool sortbydif(const pair<int,int> &a, const pair<int, int> &b){
+    return (a.second-a.first) < (b.second-b.first);
+}
+bool sortbysec(const pair<int,int> &a, const pair<int,int> &b){
+    return (a.second < b.second);
+}
 int solve1(int n, vector<pair<int,int>> v){
+    sort(v.begin(),v.end(),sortbydif);
+    //reverse(v.begin(),v.end());
     int s,mx;
     s = v[0].first;
     mx = v[0].second-s;
@@ -48,10 +56,12 @@ int solve1(int n, vector<pair<int,int>> v){
         }
         mx = max(cal,mx);
     }
+    printf("%d\n",s);
     return mx;
 }
 
 int solve2(int n, vector<pair<int,int>> v){
+    sort(v.begin(),v.end());
     int s, mx;
     s = v[0].second;
     mx = 0;
@@ -79,7 +89,7 @@ int main(){
     for(int i = 0; i < n; i++){
         scanf("%d %d", &v[i].first, &v[i].second);
     }
-    sort(v.begin(),v.end());
+    printf("%d %d\n", v[0].first, v[0].second);
     printf("%d %d\n", solve1(n, v), solve2(n, v));
     return 0;
 }
