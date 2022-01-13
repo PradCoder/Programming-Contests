@@ -14,7 +14,24 @@ using namespace std;
  *         sort for start and end time (of first task)
  *         check if following ending time is below after first task end time
  *         take difference between current task being scanned and next task
- * 
+ *
+ *
+ *
+ *
+ * 100 200
+ * 150 300
+ * 200 400
+ * 300 500
+ * 400 600
+ * 200 1000
+ *
+ * 100 200
+ * 150 300
+ * 200 400 
+ * 200 1000
+ * 2000 2900
+ * 2400 2600
+ *
 */
 
 int solve1(int n, vector<pair<int,int>> v){
