@@ -16,9 +16,6 @@ using namespace std;
  *         check if following ending time is below after first task end time
  *         take difference between current task being scanned and next task
  *
- *
- *
- *
  * 100 200
  * 150 300
  * 200 400
@@ -33,16 +30,22 @@ using namespace std;
  * 2000 2900
  * 2400 2600
  *
+ * s    e
+ *    s       e
+ *        s       e
+ *             s      e
+ *
 */
 bool sortbydif(const pair<int,int> &a, const pair<int, int> &b){
     return (a.second-a.first) < (b.second-b.first);
 }
+
 bool sortbysec(const pair<int,int> &a, const pair<int,int> &b){
     return (a.second < b.second);
 }
+
 int solve1(int n, vector<pair<int,int>> v){
     sort(v.begin(),v.end(),sortbydif);
-    //reverse(v.begin(),v.end());
     int s,mx;
     s = v[0].first;
     mx = v[0].second-s;
@@ -60,6 +63,7 @@ int solve1(int n, vector<pair<int,int>> v){
     return mx;
 }
 
+//works
 int solve2(int n, vector<pair<int,int>> v){
     sort(v.begin(),v.end());
     int s, mx;
@@ -68,9 +72,7 @@ int solve2(int n, vector<pair<int,int>> v){
     int cal = 0;
 
     for(int i = 1; i<n; i++){
-        if(v[i].second < s){
-            s = s;
-        }else{
+        if(v[i].second >= s){
             s = v[i].second;
         }
         cal = v[i+1].first - s;
