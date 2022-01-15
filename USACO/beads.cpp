@@ -14,8 +14,15 @@ White beads can be colored anything.
 
 int solve1 (int n, string str){
     int cal = 0;
-    for(int i = 0; i < 2*n; i++){
-         
+    string nStr = str+str;
+    for(int j = 0; j < n ; j++){
+        for(int i = 0; i < 2*n-1; i++){
+             if(nStr[i] == 'w' || nStr[i+1] == 'r'){
+                
+             }else if(nStr[i] == 'w' || nStr[i+1] == 'b'){
+             
+             }
+        }
     }
     return val;    
 }
