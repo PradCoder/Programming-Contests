@@ -45,13 +45,13 @@ bool sortbysec(const pair<int,int> &a, const pair<int,int> &b){
 }
 
 int solve1(int n, vector<pair<int,int>> v){
-    sort(v.begin(),v.end(),sortbydif);
+    sort(v.begin(),v.end());
     int s,mx;
     s = v[0].first;
     mx = v[0].second-s;
     int cal = 0;
     for(int i = 0; i<n-1;i++){
-        if(v[i+1].first <= v[i].second){
+       if(v[i+1].first <= v[i].second){
             cal = v[i+1].second - s;
         }else{
             s = v[i+1].first;
@@ -59,7 +59,6 @@ int solve1(int n, vector<pair<int,int>> v){
         }
         mx = max(cal,mx);
     }
-    printf("%d\n",s);
     return mx;
 }
 
@@ -78,7 +77,6 @@ int solve2(int n, vector<pair<int,int>> v){
         cal = v[i+1].first - s;
         mx = max(cal,mx);
     }
-
     return mx;
 }
 
@@ -91,7 +89,7 @@ int main(){
     for(int i = 0; i < n; i++){
         scanf("%d %d", &v[i].first, &v[i].second);
     }
-    printf("%d %d\n", v[0].first, v[0].second);
+    //printf("%d %d\n", v[0].first, v[0].second);
     printf("%d %d\n", solve1(n, v), solve2(n, v));
     return 0;
 }
