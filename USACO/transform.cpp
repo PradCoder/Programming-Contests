@@ -33,17 +33,24 @@ int solve(int n, vector<string> va, vector<string> vb){
     int mi = 8;
     for (int i = 0; i < n; i++){
         for (int j = 0; j < n; j++){
-
-            if(v[i % n][j % n] == v[i%n][j%n]){
+            if(vb[i][j] == va[(i+n-1)%n][(j+n-1)%n]){
                 mi = min(mi,1);
-            }else if (v[i%n][j%n] == v[i%n][j%n]){
+            }else if (vb[i][j] == va[(i+2*n-1)%n][(j+2*n-1)%n]){
                 mi = min(mi,2);  
-            }else if (v[i%n][j%n] == v[i%n][j%n]){
+            }else if (vb[i][j%n] == va[(i+3*n-1)%n][(j+3*n-1)%n]){
                 mi = min(mi,3); 
-            }else if (v[i%n][j%n] == v[i%n][j%n]){
+            }else if (vb[i][j%n] == va[i][(j+n-1)%n]){
                 mi = min(mi,4); 
-            }else if (){
-            
+            }else if (vb[i][j%n] == va[i][(j+n-1)%n]){
+                 if(vb[i][j] == va[(i+n-1)%n][(j+n-1)%n]){
+                    mi = min(mi,1);
+                }else if (vb[i][j] == va[(i+2*n-1)%n][(j+2*n-1)%n]){
+                    mi = min(mi,2);  
+                }else if (vb[i][j%n] == va[(i+3*n-1)%n][(j+3*n-1)%n]){
+                    mi = min(mi,3); 
+                }
+            }else{
+                break;
             }
         }
     }
