@@ -21,7 +21,6 @@ using namespace std;
 #7: Invalid Transformation: The new pattern was not obtained by any of the above methods.
 */
 
-
 int mod(int n,int j){
     while(j < 0){
         j += n;
@@ -108,6 +107,8 @@ int solve(int n, vector<string> va, vector<string> vb){
             }
         }
     }
+
+
     /*
             }else if (vb[i][j%n] == va[i][(j+n-1)%n]){
                 mi = min(mi,4); 

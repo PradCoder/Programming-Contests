@@ -18,7 +18,7 @@ int solve1 (int n, string str){
     for(int j = 0; j < n ; j++){
         for(int i = 0; i < 2*n-1; i++){
              if(nStr[i] == 'w' || nStr[i+1] == 'r'){
-                
+                                
              }else if(nStr[i] == 'w' || nStr[i+1] == 'b'){
              
              }
