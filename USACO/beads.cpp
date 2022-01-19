@@ -16,7 +16,8 @@ int solve1 (int n, string str){
     int cal = 0;
     string nStr = str+str;
     for(int j = 0; j < n ; j++){
-        for(int i = 0; i < 2*n-1; i++){
+        //look at markers
+        for(int i = 0; i < n; i++){
              if(nStr[i] == 'w' || nStr[i+1] == 'r'){
                                 
              }else if(nStr[i] == 'w' || nStr[i+1] == 'b'){
