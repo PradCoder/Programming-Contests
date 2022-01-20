@@ -1,6 +1,6 @@
 /*
 ID: 2010pes1
-TASK: milk2
+TASK: beads
 LANG: C++
 */
 
@@ -9,34 +9,6 @@ LANG: C++
 #include <utility>
 
 using namespace std;
-
-/* So solving for longest interval works 
- * solve1: by scanning for the intersects of schedules 
- * solve2: by scanning for ranges 
- *         sort for start and end time (of first task)
- *         check if following ending time is below after first task end time
- *         take difference between current task being scanned and next task
- *
- * 100 200
- * 150 300
- * 200 400
- * 300 500
- * 400 600
- * 200 1000
- *
- * 100 200
- * 150 300
- * 200 400 
- * 200 1000
- * 2000 2900
- * 2400 2600
- *
- * s    e
- *    s       e
- *        s       e
- *             s      e
- *
-*/
 
 FILE *in, *out;
 

@@ -17,11 +17,31 @@ int solve1 (int n, string str){
     string nStr = str+str;
     for(int j = 0; j < n ; j++){
         //look at markers
+        int cA = 0;
+        int cW = 0;
+        int cR = 0;
+        int cB = 0;
+        bool encountB = false;
+        bool encountR = false;
         for(int i = 0; i < n; i++){
-             if(nStr[i] == 'w' || nStr[i+1] == 'r'){
-                                
-             }else if(nStr[i] == 'w' || nStr[i+1] == 'b'){
-             
+             if(nStr[i] == 'w'){
+                 cW++;
+             }else if(nStr[i] == 'b'){
+                 if(encountB && encountR){
+                    break;
+                 }
+                 cB = cW;
+                 cW = 0;
+                 cB++;
+                 encountB = true;
+             }else if(nStr[i] == 'r'){
+                 if(encountB && encountR){
+                    break;
+                 }
+                 cB = cW;
+                 cW = 0;
+                 cR++;
+                 encountR = true;
              }
         }
     }
