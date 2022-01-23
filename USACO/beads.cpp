@@ -14,10 +14,10 @@ White beads can be colored anything.
 
 int solve1 (int n, string str){
     int cal = 0;
+    int val = 0;
     string nStr = str+str;
     for(int j = 0; j < n ; j++){
         //look at markers
-        int cA = 0;
         int cW = 0;
         int cR = 0;
         int cB = 0;
@@ -38,12 +38,14 @@ int solve1 (int n, string str){
                  if(encountB && encountR){
                     break;
                  }
-                 cB = cW;
+                 cR = cW;
                  cW = 0;
                  cR++;
                  encountR = true;
              }
         }
+        val = cW + cB + cR;
+        
     }
     return val;    
 }
