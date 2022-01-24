@@ -44,7 +44,7 @@ int solve1 (int n, string str){
                  encountR = true;
              }
         }
-        val = cW + cB + cR;
+        val = max(cW + cB + cR, val);
         
     }
     return val;    
