@@ -13,39 +13,15 @@ White beads can be colored anything.
 */
 
 int solve1 (int n, string str){
-    int cal = 0;
-    int val = 0;
-    string nStr = str+str;
-    for(int j = 0; j < n ; j++){
-        //look at markers
-        int cW = 0;
-        int cR = 0;
-        int cB = 0;
-        bool encountB = false;
-        bool encountR = false;
-        for(int i = 0; i < n; i++){
-             if(nStr[i] == 'w'){
-                 cW++;
-             }else if(nStr[i] == 'b'){
-                 if(encountB && encountR){
-                    break;
-                 }
-                 cB = cW;
-                 cW = 0;
-                 cB++;
-                 encountB = true;
-             }else if(nStr[i] == 'r'){
-                 if(encountB && encountR){
-                    break;
-                 }
-                 cR = cW;
-                 cW = 0;
-                 cR++;
-                 encountR = true;
-             }
+    int count_a_b = 0;
+    for(int i = 0; i < n; i++){
+        int count_w_b = 0;
+        int count_w_a = 0;
+        for(int j = 0; j < i; j++){
+            if(str[i] == 'w' || str[j] == 'b'){
+                
+            }    
         }
-        val = max(cW + cB + cR, val);
-        
     }
     return val;    
 }
