@@ -16,11 +16,11 @@ int main(){
         count = 1; 
     }
     m = count;
-    for(i = 2; i < n-1; i++){
+    for(i = 2; i < n; i++){
         if(str[i] == str[i-1]){
             count++;
         }else{
-            m = max(m,count); 
+            m = max(m,count);
             count = 1;
         }
     }
