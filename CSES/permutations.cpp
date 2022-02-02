@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -12,8 +12,11 @@ int main(){
         for(int i = 0; i < n; i++){
             vec[(1*i+n-1)%n] = i+1;
         }
-        for(int i : vec)
-            cout << i;
+        int i = 0;
+        for(; i < n-1; i++){
+            cout << i << " ";
+        }
+        cout << vec[i+1];
     }else{
         cout << "NO SOLUTION";
     }
