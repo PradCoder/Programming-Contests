@@ -10,11 +10,11 @@ int main(){
     }else if( n&1 && n > 3){
         vector<int> vec = vector<int>(n,0);
         for(int i = 0; i < n; i++){
-            vec[(1*i+n-1)%n] = i+1;
+            vec[((1+i)*i+n-1)%n] = i+1;
         }
         int i = 0;
         for(; i < n-1; i++){
-            cout << i << " ";
+            cout << vec[i] << " ";
         }
         cout << vec[i+1];
     }else{
