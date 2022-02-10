@@ -19,17 +19,18 @@ int main(){
             }
             cout << vec[n-1];
         }else{
-            for(int i = 0; i < n; i++){
-                vec[((2*i+1)+n-1)%n] = i+1;
-            }
-            int i = 0;
-            for(; i < n-1; i++){
-                cout << vec[i] << " ";
-            }
-            cout << vec[n-1];
         }
     }else{
-        cout << "NO SOLUTION";
+        vector<int> vec = vector<int>(n,0);
+        for(int i = 0; i < n; i++){
+            vec[((2*i)+n-1)%n] = i+1;
+        }
+        int i = 0;
+        for(; i < n-1; i++){
+            cout << vec[i] << " ";
+        }
+        cout << vec[n-1];
+        //cout << "NO SOLUTION";
     }
     return 0;
 }
