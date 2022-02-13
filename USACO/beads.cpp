@@ -10,6 +10,12 @@ using namespace std;
 /*
 Collect Beads of 2 colours from opposite ends
 White beads can be colored anything.
+
+
+
+29
+wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
+11
 */
 
 int solve1 (int n, string str){
@@ -17,6 +23,13 @@ int solve1 (int n, string str){
     for(int i = 0; i < n; i++){
         int count_w_b = 0;
         for(int j = 0; j < i; j++){
+            if(str[i] == 'w' || str[j] == 'b'){
+               count_w_b++;
+            }else if(str[i] == 'w' || str[j] == 'r'){
+               count_w_r++;
+            } 
+        }
+        for(int j = n-1; j>= i; j--){
             if(str[i] == 'w' || str[j] == 'b'){
                count_w_b++;
             }else if(str[i] == 'w' || str[j] == 'r'){
