@@ -7,37 +7,31 @@ LANG: C++
 #include "bits/stdc++.h"
 
 using namespace std;
+
 /*
 Collect Beads of 2 colours from opposite ends
 White beads can be colored anything.
-
-
-
 29
 wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
 11
 */
 
 int solve1 (int n, string str){
-    int count_w_r = 0;
-    for(int i = 0; i < n; i++){
-        int count_w_b = 0;
-        for(int j = 0; j < i; j++){
-            if(str[i] == 'w' || str[j] == 'b'){
-               count_w_b++;
-            }else if(str[i] == 'w' || str[j] == 'r'){
-               count_w_r++;
-            } 
-        }
-        for(int j = n-1; j>= i; j--){
-            if(str[i] == 'w' || str[j] == 'b'){
-               count_w_b++;
-            }else if(str[i] == 'w' || str[j] == 'r'){
-               count_w_r++;
-            } 
-        }
-    }
-    return val;    
+   int valr = 0;
+   int cr = 0;
+   for(int i = 0; i<n;  i++){
+       //longest consecutive chain 
+       cr = 0;
+       for(int j = i; j < n;j++){
+            if(str[j] == "r"){
+                cr++;
+            }else{
+                break
+            }
+       }
+        valr = max(valr,cr)
+   } 
+   return valr;    
 }
 
 int main(){
