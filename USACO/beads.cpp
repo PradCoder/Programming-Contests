@@ -43,8 +43,8 @@ int solve1 (int n, string str){
        }
         valr = max(valr,cr);
         valb = max(valb,cb);
-   } 
-   return valr;    
+   }
+   return max(valr,valb);    
 }
 
 int main(){
