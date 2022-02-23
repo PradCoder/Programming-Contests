@@ -26,6 +26,13 @@ int solve1 (int n, string str){
 
        //Right side.
        for (b = a, x = 'w'; b < n + a; b++, t1++){
+           /*
+            * Iterate to the right and loop round back
+            * 
+            * Below check current one and color of previous segnment
+            * Why does this work? because the previous segment is stored only
+            * when the color is different
+            */
             if((beads[b%n] == 'r' && x == 'b') || (beads[b%n] == 'b' && x == 'r')){
                 //Use mods to 'loop' around
                 break;
@@ -36,6 +43,10 @@ int solve1 (int n, string str){
 
        //Left side.
        for (c = a-1, x = 'w'; c > a - 1 - n; c--, t2++){
+            /* Go backwards
+             * 
+             *
+             */
             if((beads[(c+n) % n] == 'r' && x == 'b') || (beads[(c+n)%n] == 'b' && x == 'r')){
                 break;
             }else if(x == 'w'){
@@ -48,6 +59,7 @@ int solve1 (int n, string str){
             t1 = n -t2; //If so, that means we can reach all the beads.
        }
 
+       //find max
        ans = max(t1+t2, ans);
 
    }

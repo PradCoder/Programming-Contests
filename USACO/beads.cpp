@@ -22,27 +22,30 @@ int solve1 (int n, string str){
    int valb = 0;
    int cb = 0;
    int cw = 0;
+
+   char x = 'w';
    for(int i = 0; i < n;  i++){
        //longest consecutive chain b and r
-       cr = 0;
-       cb = 0;
-       cw = 0;
-       for(int j = i; j < n;j++){
-            if(str[j] == 'b' || str[j] == 'w'){
+       cr = cb = cw = 0;
+       for(int j = i; j < i+n;j++){
+            if(str[j] == 'b' && x == 'r' || str[j] == 'r' && x == 'b'){
+                break;
+            }else{
+                x = str[j%n];
                 cb++;
-            }else{
-                break;
             }
        }
-       for(int j = i; j < n;j++){
-            if(str[j] == 'r' || str[j] == 'w'){
+       for(int j = i-1; j >= i-n;j--){
+            int ew = (j+n) % n
+            if(str[j] == 'b' && x == 'r' || str[j] == 'r' && x == 'b'){
+                break;
+            }else{
                 cr++;
-            }else{
-                break;
             }
        }
-        valr = max(valr,cr);
-        valb = max(valb,cb);
+       if(cr+cb > n){
+            cr = cb-n;
+       }
    }
    return max(valr,valb);    
 }
