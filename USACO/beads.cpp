@@ -17,37 +17,37 @@ wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
 */
 
 int solve1 (int n, string str){
-   int valr = 0;
-   int cr = 0;
-   int valb = 0;
-   int cb = 0;
-   int cw = 0;
+   int cr,cb, ans = 0;
 
    char x = 'w';
    for(int i = 0; i < n;  i++){
-       //longest consecutive chain b and r
-       cr = cb = cw = 0;
+       cr = cb = 0;
        for(int j = i; j < i+n;j++){
-            if(str[j] == 'b' && x == 'r' || str[j] == 'r' && x == 'b'){
+            if((str[j] == 'b' && x == 'r') || (str[j] == 'r' && x == 'b')){
                 break;
             }else{
                 x = str[j%n];
                 cb++;
             }
        }
+
        for(int j = i-1; j >= i-n;j--){
-            int ew = (j+n) % n
-            if(str[j] == 'b' && x == 'r' || str[j] == 'r' && x == 'b'){
+            int ew = (j+n) % n;
+            if((str[ew] == 'b' && x == 'r') || (str[ew] == 'r' && x == 'b')){
                 break;
             }else{
+                x = str[ew];
                 cr++;
             }
        }
+       //double count correction
        if(cr+cb > n){
-            cr = cb-n;
+            cr = cr-n;
        }
+       cout << cr << " "<< cb << "\n"; 
+       ans = max(ans, cr+cb);
    }
-   return max(valr,valb);    
+   return ans;    
 }
 
 int main(){
