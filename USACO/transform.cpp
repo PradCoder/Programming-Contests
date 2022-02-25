@@ -1,6 +1,6 @@
 /*
 ID: 2010pes1
-TASK: milk2
+TASK: transform
 LANG: C++
 */
 

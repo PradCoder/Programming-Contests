@@ -18,36 +18,35 @@ wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
 
 int solve1 (int n, string str){
    int cr,cb, ans = 0;
-
-   char x = 'w';
+   char x;
    for(int i = 0; i < n;  i++){
        cr = cb = 0;
-       for(int j = i; j < i+n;j++){
-            if((str[j] == 'b' && x == 'r') || (str[j] == 'r' && x == 'b')){
+       x = 'w';
+       for(int j = i; j < i+n; j++,cr++){
+            if((str[j%n] == 'b' && x == 'r') || (str[j%n] == 'r' && x == 'b')){
                 break;
-            }else{
+            }else if (x == 'w'){
                 x = str[j%n];
-                cb++;
             }
        }
-
-       for(int j = i-1; j >= i-n;j--){
+       
+       x = 'w';
+       for(int j = i-1; j >= i-n;j--,cb++){
             int ew = (j+n) % n;
             if((str[ew] == 'b' && x == 'r') || (str[ew] == 'r' && x == 'b')){
                 break;
-            }else{
+            }else if (x == 'w'){
                 x = str[ew];
-                cr++;
             }
        }
        //double count correction
        if(cr+cb > n){
-            cr = cr-n;
+            cr = n-cb;
        }
        cout << cr << " "<< cb << "\n"; 
        ans = max(ans, cr+cb);
    }
-   return ans;    
+   return ans;
 }
 
 int main(){
