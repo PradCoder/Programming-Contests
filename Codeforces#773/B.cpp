@@ -29,16 +29,22 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
 
+string solve(vector<int> &v){
+    
+    return "";
+}
+
 int main(){
     int n;
     cin >> n;
     for(int i = 0; i < n; i++){
-        int a,b,c,d,e,f,ans = 0;
-        cin >> b >> a >> d >> c >> f >> e;
-        if(a == c && e < a) ans = abs(b-d);
-        else if (c == e && a < c) ans = abs(f-d);
-        else if (a == e && c < a) ans = abs(b-f);
-        cout << ans << "\n";
+        int m;
+        cin >> m;
+        vector<int> v(m);
+        while(m--){
+            cin >> v[m];
+        }
+        cout << solve(v) << "\n";
     }
     return 0;
 }
