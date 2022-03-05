@@ -4,10 +4,6 @@ P. AMARASEKERA
 
 Codeforces Round 773
 
-The trick here is realizing that the averages can be the same for
-each pair or it can be bigger than or less than a certain amount
-so pair the numbers at the opposite ends of the sorted order to
-change up the averages
 */
 #include "bits/stdc++.h"
 #include <cstdint>
