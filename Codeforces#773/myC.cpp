@@ -2,8 +2,13 @@
 
 using namespace std;
 
+/*
+ * 
+ *
+ * */
 int solve(int x, vector<int> v){
-    return
+    vector<int> inVec;
+    return inVec;
 }
 
 int main(){
