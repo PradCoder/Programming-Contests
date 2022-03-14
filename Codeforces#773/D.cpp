@@ -11,6 +11,7 @@
 #include <fstream>
 #include <functional>
 #include <iomanip>
+#include <iostream>
 #include <list>
 #include <map>
 #include <math.h>
@@ -61,21 +62,58 @@ void reverse_pref(vector<int> &ar, vector<pair<int, int>> &ans,
         ans.emplace_back(len + mdf + i, ar[i]);
     }
     if (len != 0){
-        lesn.push_back(len*2);
+        lens.push_back(len*2);
     }
     mdf += len * 2;
     reverse(ar.begin(), ar.begin() + len);
 }
-int solve(vector<int64_t> aux){
-    sort(aux.begin(),aux.end());
-    vector<bool> vbol;
-    int i = 0, j = 0, ans = 0;
-    for(int i = 0; i < v.size(); i++){
-        if( v[i]*x == v[i] ){
-        
-        } 
+
+void move_to_front(vector<int> &ar, vector<pair<int, int>> &ans,
+                   vector<int> &lens, int &mdf, int id){
+    reverse_pref(ar, ans, lens ,mdf, id);
+    reverse_pref(ar, ans, lens, mdf, id+1);
+}
+
+signed solve(int n, vector<int> ar){
+    int xr = 0;
+    unordered_map<int, int> cnt;
+    for (auto &it : ar){
+        cnt[it]++;
     }
-    return inVec;
+    for (auto &it : cnt){
+        if (it.second % 2){
+            cout << "-1\n";
+            return 0;
+        }
+    }
+    vector<int> br = ar;
+    sort(br.rbegin(), br.rend());
+    vector<pair<int,int>> ans;
+    vector<int> lens;
+    ans.reserve(n * n * 2);
+    lens.reserve(n * 2);
+    int mdf = 0;
+    for (int i = 0; i < n; ++i){
+        int fnd = (int) (find(ar.begin() + i, ar.end(), br[i]) - ar.begin());
+        move_to_front(ar, ans, lens, mdf, fnd);
+    }
+    for (int i = 0; i < n; ++i){
+        int lst = i;
+        for (; lst < n && ar[lst] == ar[i]; ++lst){
+        }
+        lens.push_back(lst - i);
+        i = lst - 1;
+    }
+    cout << (int)ans.size() << "\n";
+    for (auto &it : ans){
+        cout << it.first << " " << it.second << "\n";
+    }
+    cout << (int) lens.size() << "\n";
+    for(auto &it : lens){
+        cout << it << " ";
+    }
+    cout << "\n";
+    return 0;
 }
 
 int main(){
@@ -83,12 +121,12 @@ int main(){
     cin >> t;
     while(t--){
         int n;
-        cin >> n
-        vector<int64_t> aux(n);
+        cin >> n;
+        vector<int> aux(n);
         for(auto& it : aux){
             cin >> it;
         }
-        cout << solve(aux) << "\n";
+        cout << solve(n, aux) << "\n";
     }
     return 0;
 }
