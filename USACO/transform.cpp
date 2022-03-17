@@ -28,7 +28,6 @@ int mod(int n,int j){
     return (j % n);
 }
 
-
 int solve(int n, vector<string> va, vector<string> vb){
     int mi = 8;
     bool state = true;

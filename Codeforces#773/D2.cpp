@@ -56,7 +56,7 @@ using namespace std;
  *
  * */
 
-void reverse_pref(vector<int> &ar, vector<pair<int, int>> &ans,
+void reverse_range(vector<int> &ar, vector<pair<int, int>> &ans,
                   vector<int> &lens, int &mdf, int l, int r){
     for (int i = l; i < r; ++i){
         ans.emplace_back(r + 1 + mdf + i - 2 * l, ar[i]);
@@ -70,8 +70,8 @@ void reverse_pref(vector<int> &ar, vector<pair<int, int>> &ans,
 
 void move_last_to_front(vector<int> &ar, vector<pair<int, int>> &ans,
                         vector<int> &lens, int &mdf, int l, int r){
-    reverse_pref(ar, ans, lens, mdf, l , r-1);
-    reverse_pref(ar, ans, lens, mdf, l , r);
+    reverse_range(ar, ans, lens, mdf, l , r-1);
+    reverse_range(ar, ans, lens, mdf, l , r);
 }
 
 signed solve(int n, vector<int> ar){
@@ -104,7 +104,7 @@ signed solve(int n, vector<int> ar){
     for (auto &it : ans){
         cout << it.first << " " << it.second << "\n";
     }
-    cout << (int) lens.size() << "\n";
+    cout << (int)lens.size() << "\n";
     for(auto &it : lens){
         cout << it << " ";
     }
@@ -112,21 +112,22 @@ signed solve(int n, vector<int> ar){
     return 0;
 }
 
-int main(){
+signed main(){
+    (*cin.tie(0)).sync_with_stdio(0);
     int t;
     cin >> t;
     while(t--){
         int n;
         cin >> n;
         vector<int> aux(n);
-        for(auto& it : aux){
+        for (auto& it : aux){
             cin >> it;
         }
         if (n % 2){
             cout << "-1\n";
             continue;
         }
-        cout << solve(n, aux) << "\n";
+        solve(n, aux);
     }
     return 0;
 }
