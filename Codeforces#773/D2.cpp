@@ -58,7 +58,7 @@ using namespace std;
 
 void reverse_range(vector<int> &ar, vector<pair<int, int>> &ans,
                   vector<int> &lens, int &mdf, int l, int r){
-    for (int i = l; i < r; ++i){
+    for (int i = l; i <= r; ++i){
         ans.emplace_back(r + 1 + mdf + i - 2 * l, ar[i]);
     }
     if (r - l + 1 > 0){
