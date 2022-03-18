@@ -126,7 +126,7 @@ int main(){
         for(auto& it : aux){
             cin >> it;
         }
-        cout << solve(n, aux) << "\n";
+        solve(n, aux);
     }
     return 0;
 }
