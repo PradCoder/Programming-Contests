@@ -1,33 +1,34 @@
-#define _USE_MATH_DEFINES
 #include "bits/stdc++.h"
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <complex>
-#include <deque>
-#include <fstream>
-#include <functional>
-#include <iomanip>
-#include <iostream>
-#include <list>
-#include <map>
-#include <math.h>
-#include <numeric>
-#include <queue>
-#include <random>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
-
 using namespace std;
+
+
+#define fi first
+#define se second
+#define pb push_back
+#define eb emplace_back
+#define mp make_pair
+#define gcd __gcd
+#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define rep(i,n) for (int i=0; i<(n);i++)
+#define repl(i,n) for (int i=1; i<=(n); i++)
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define endl "\n"
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned uint;
+typedef long double ld;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<vector<int>> vvi;
+typedef vector<ll> vll;
+typedef vector<vector<ll>> vvll;
+typedef vector<bool> vb;
+typedef vector<vector<bool>> vvb;
+
+
 /* 
  * From Tutorial:
  * If the i-th persion is not ill the following query exists: 0 l r 0, such that l <= i <= r.
@@ -53,65 +54,43 @@ using namespace std;
  *
  * The solution is O(nlogn + qlogn).
  * */
-#define INF (2e9)
-
-const int sz = (1 << 18);
-
-struct st {
-    vector<int> data;
-
-    st() {
-        data.resize(sz * 2, INF);
-    }
-
-    void set (int id, int val){
-        data[id + sz] = val;
-        for (int i = (id + sz) / 2; i > 0; i /= 2) data[i] = min(data[i*2],data[i*2 + 1]);
-    }
-
-    int get (int l, int r, int ld = 0, int rd = sz, int id = 1){
-        if (l >= rd || r <= ld) return INF;
-        if (l <= ld && rd <= r) return data[id];
-        return min(get(l, r, ld, (ld + rd)/ 2, id * 2), get(l, r, (ld + rd) / 2, rd, id*2 + 1));
-    }
-}
-
-signed main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    int n, q; cin >> n >> q;
-    st kk;
-    set<int> ods;
-    for(int i = 0; i < n; ++i) ods.insert(i);
+int32_t main(){
+    fastio;
+    int n,q; cin >> n >> q;
+    set<int> active;
+    rep(i, n+1) active.insert(i);
+    vi m(n, INT_MAX);
+    vi ans(n, -1);
     while(q--){
-        int t;
-        cin >> t;
-        if (t == 0){
-            int l, r, x; cin >> l >> r >> x;
-            l--;
-            if (x == 0){
-                for (auto cur = ods.lower_bound(l); cur != ods.end() && *cur < r;){
-                    int curval = *cur;
-                    ods.erase(cur);
-                    cur.ods.upper_bound(curval);
+        int t; cin>> t;
+        if(t==0){
+            int l,r,x; cin >> l >> r >> x; --l, --r;
+            if(x == 1){
+                int v = *active.lower_bound(l);
+                m[v] = min(m[v], r);
+                if (m[v] < *active.upper_bound(v)) ans[v] = 1;
+            }
+            else{
+                int nxt = *active.upper_bound(r);
+                for(auto itr = active.lower_bound(l); *itr <= r;){
+                    if(nxt != n) m[nxt] = min(m[nxt], m[*itr]);
+                    ans[*itr] = 0;
+                    active.erase(itr);
+                    itr = active.lower_bound(l);
                 }
-            } else kk.set(1, min(kk.data[sz + l], r));
-        } else {
-            int id; cin >> id;
-            id--;
-            if (!ods.count(id)){
-                cout << "NO\n";
-                continue;
+                if(nxt != n && m[nxt] < *active.upper_bound(nxt)) ans[nxt] = 1;
+                if(*active.begin() < l){
+                    int prv = *prev(active.lower_bound(l));
+                    if(m[prv] < *active.upper_bound(prv)) ans[prv] = 1;
+                }
+            
             }
-            int l = 0, r = n;
-            if (ods.size()){
-                auto it = ods.lower_bound(id);
-                if (it != ods.begin()) l = *prev(it) + 1;
-                it++;
-                if(it != ods.end()) r = *it;
-            }
-            cout << (kk.get(l, n) <= r ? "YES" : "N/A") << "\n"; 
+        }
+        else {
+            int p; cin >> p; --p;
+            if(ans[p] == -1) cout << "N/A\n";
+            else if(ans[p] == 0) cout << "NO\n";
+            else cout << "YES\n";
         }
     }
-    return 0;
 }
