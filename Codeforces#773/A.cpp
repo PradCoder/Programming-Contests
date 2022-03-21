@@ -38,7 +38,23 @@ typedef struct triangle{
 } triangle;
 
 int solve(triangle t){
-    return 98;
+    pair<int,int> a,b,c;
+    a = t.vp[0];
+    b = t.vp[1];
+    c = t.vp[2];
+    if (a.first != b.first){
+        if(a.second < b.second){
+            sqrt(pow(a.first - b.first,2)+pow(a.second - b.second,2));
+        }
+    }else if (b.second != c.second){
+        if(c.second < b.second){
+            sqrt(pow(a.first - b.first,2)+pow(a.second - b.second,2));
+        }
+    }else if (a.second != c.second){
+        if(a.second < c.second){
+            sqrt(pow(a.first - c.first,2)+pow(a.second - c.second,2));
+        }
+    }
 }
 
 int main(){
