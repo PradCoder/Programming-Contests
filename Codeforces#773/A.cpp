@@ -43,14 +43,9 @@ int solve(triangle t){
     b = t.vp[1];
     c = t.vp[2];
     int ans = 0;
-    /*
-    *
-    *   -------------
-    *   \           /
-    *       \ / 
-    *        \
-    */
-    
+    if (a.second == 0 || b.second == 0 || c.second == 0){
+        ans = 0;
+    } 
     if(a.second == b.second){
         ans = abs(a.first - b.first);
     }else if(a.second == c.second){
@@ -66,17 +61,16 @@ int main(){
     (*cin.tie(0)).sync_with_stdio(0);
     int n;
     cin >> n;
-    vector<triangle> ts(5);
-    ts.resize(n);
+    vector<triangle> ts(n);
     for(int i = 0; i < n; i++){
         for(int j = 0; j < 3; j++){
             pair<int,int> p;
             cin >> p.first >> p.second;
             ts[i].vp.push_back(p);
         }
-        for(auto i : ts){
-            cout << solve(i) <<"\n";
-        }
+    }
+    for(auto i : ts){
+        cout << solve(i) <<"\n";
     }
     return 0;
 }
