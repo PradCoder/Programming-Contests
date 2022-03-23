@@ -42,22 +42,28 @@ int solve(triangle t){
     a = t.vp[0];
     b = t.vp[1];
     c = t.vp[2];
-    if (a.first != b.first){
-        if(a.second < b.second){
-            sqrt(pow(a.first - b.first,2)+pow(a.second - b.second,2));
-        }
-    }else if (b.second != c.second){
-        if(c.second < b.second){
-            sqrt(pow(a.first - b.first,2)+pow(a.second - b.second,2));
-        }
-    }else if (a.second != c.second){
-        if(a.second < c.second){
-            sqrt(pow(a.first - c.first,2)+pow(a.second - c.second,2));
-        }
-    }
+    int ans = 0;
+    /*
+    *
+    *   -------------
+    *   \           /
+    *       \ / 
+    *        \
+    */
+    
+    if(a.second == b.second){
+        ans = abs(a.first - b.first);
+    }else if(a.second == c.second){
+        ans = abs(a.first - c.first);
+    }else if(b.second == c.second){
+        ans = abs(b.first - c.first);
+    } 
+
+    return ans;
 }
 
 int main(){
+    (*cin.tie(0)).sync_with_stdio(0);
     int n;
     cin >> n;
     vector<triangle> ts(5);
@@ -67,10 +73,9 @@ int main(){
             pair<int,int> p;
             cin >> p.first >> p.second;
             ts[i].vp.push_back(p);
-            cout << p.first << " " << p.second << "\n";
         }
         for(auto i : ts){
-            cout << solve(i);
+            cout << solve(i) <<"\n";
         }
     }
     return 0;
