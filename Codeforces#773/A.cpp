@@ -43,17 +43,22 @@ int solve(triangle t){
     b = t.vp[1];
     c = t.vp[2];
     int ans = 0;
-    if (a.second == 0 || b.second == 0 || c.second == 0){
-        ans = 0;
-    } 
     if(a.second == b.second){
         ans = abs(a.first - b.first);
+        if (a.second - b.second > a.first - b.first){
+            ans = 0;
+        }
     }else if(a.second == c.second){
         ans = abs(a.first - c.first);
+        if (a.second - c.second > a.first - c.first){
+            ans = 0;
+        }
     }else if(b.second == c.second){
         ans = abs(b.first - c.first);
+        if (b.second - c.second > b.first - c.first){
+            ans = 0;
+        }
     } 
-
     return ans;
 }
 
