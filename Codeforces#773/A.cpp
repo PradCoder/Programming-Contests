@@ -65,6 +65,15 @@ int solve(triangle t){
             ans = 0;
         }
     } 
+    
+    vector<pair<int,int>> ls = t.vp;
+    int n = ls.size(); 
+    for(int i = 0; i < ls.size(); i++){
+        if (ls[i].first > ls[(i+1)%n].first){
+            ans = abs(ls[i].first-ls[(i+1)%n].first); 
+        }
+    }
+
     return ans;
 }
 
