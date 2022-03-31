@@ -10,6 +10,7 @@ so pair the numbers at the opposite ends of the sorted order to
 change up the averages
 */
 #include "bits/stdc++.h"
+#include <string.h>
 
 #define F                   first
 #define S                   second
@@ -47,7 +48,7 @@ int main(){
     for(int i = 0; i < n; i++){
         string s;
         cin >> s;
-        if(s.find('+') != s.end()){
+        if(s.find('+') != string::npos){
             ans++;
         }else{
             ans--;
