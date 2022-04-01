@@ -1,0 +1,5 @@
+#!/bin/bash
+
+filename=$1
+filename="${1}.cpp"
+g++ -std=c++17 -O2 -Wall $filename -o $1
