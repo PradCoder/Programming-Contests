@@ -18,7 +18,15 @@ int main(){
             }
         }
     }
+
     cout << s1 << " " << s2<< endl;
     cout << abs(s1-2)+abs(s2-2) << endl;
+    cout << "\n\n";
+    for(int i = 0; i < n;i++){
+        for(int j = 0; j < n; j++){
+            cout << v[i][j] << " ";
+        }
+        cout << "\n";
+    }
 	return 0;	
 }
