@@ -11,8 +11,14 @@ int main(){
     while(n--){
         cin >> v[i];
     }
-    for(int i = 0; i < v.size(); i++){
-    
+    bool ok = true; 
+    for(int i = 0; i < v.size()-1; i++){
+       if(v[i] < v[i+1]){
+            ok = i;
+            ok = i+1;
+       }else{
+            ok = false;
+       }
     }
 	return 0;	
 }
