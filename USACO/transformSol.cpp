@@ -37,7 +37,7 @@ int main(){
     ifstream input;
     ofstream output;
 
-    int number, x, y, a, b, before[10][10, after[10[10], middle[10][10], same = 0;
+    int number, x, y, a, b, before[10][10], after[10[10], middle[10][10], same = 0;
     bool answer[6], five[3];
     string temp;
     

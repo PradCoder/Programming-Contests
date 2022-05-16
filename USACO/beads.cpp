@@ -17,34 +17,34 @@ wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
 */
 
 int solve1 (int n, string str){
-   int cr,cb, ans = 0;
+   string beads = str;
+   
    char x;
-   for(int i = 0; i < n;  i++){
-       cr = cb = 0;
-       x = 'w';
-       for(int j = i; j < i+n; j++,cr++){
-            if((str[j%n] == 'b' && x == 'r') || (str[j%n] == 'r' && x == 'b')){
+   int ans = 0;
+   for(int a = 0, b, c, t1, t2; a < n;  a++){
+       t1 = t2 = 0;
+       
+       for(b = a, x = 'w'; b < n + a; b++, t1++){
+            if((beads[b%n] == 'r' && x == 'b') || (beads[b%n] == 'b' && x == 'r')){
                 break;
             }else if (x == 'w'){
-                x = str[j%n];
+                x = beads[b%n];
             }
        }
        
-       x = 'w';
-       for(int j = i-1; j >= i-n;j--,cb++){
-            int ew = (j+n) % n;
-            if((str[ew] == 'b' && x == 'r') || (str[ew] == 'r' && x == 'b')){
+       for(c = a-1, x = 'w'; c > a - 1 - n; c--, t2++){
+            if((beads[(c+n)%n] == 'r' && x == 'b') || (beads[(c+n)%n] == 'b' && x == 'r')){
                 break;
             }else if (x == 'w'){
-                x = str[ew];
+                x = beads[(c+n)%n];
             }
        }
        //double count correction
-       if(cr+cb > n){
-            cr = n-cb;
+       if(t1+t2 > n){
+            t1 = n-t2;
        }
-       cout << cr << " "<< cb << "\n"; 
-       ans = max(ans, cr+cb);
+       //cout << cr << " "<< cb << "\n"; 
+       ans = max(ans, t1+t2);
    }
    return ans;
 }

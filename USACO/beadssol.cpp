@@ -17,15 +17,6 @@ int md(int j){
 }
 
 int bp(int pos, int dir){
-    int i, j;
-    char col='w';
-    if (dir == 1) j=pos;
-    else j=pos-1;
-    for(i=0;i<n;i++,j=md(j+dir)){
-        if(col=='w' && s[j]!='w') col=s[j];
-        if(col!='w' && s[j]!='w' && s[j] != col) break;
-    }
-    return i;
 }
 
 int main(){
