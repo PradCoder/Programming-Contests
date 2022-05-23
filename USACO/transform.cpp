@@ -29,15 +29,15 @@ int mod(int n,int j){
 }
 
 int solve(int n, vector<string> va, vector<string> vb){
-
+        
 }
 
 int main(){
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-    ifstream fin ("beads.in");
-    ofstream fout ("beads.out");
+    ifstream fin ("transform.in");
+    ofstream fout ("transform.out");
 
     int n;
     fin >> n;
