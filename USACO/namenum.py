@@ -1,3 +1,8 @@
+'''
+ID: 2010pes1
+TASK: namenum
+LANG: PYTHON3
+'''
 def subrecurse(i,n,formLST):
     if n==0:
         return ''
@@ -5,10 +10,16 @@ def subrecurse(i,n,formLST):
         for j in range(3):
             return (formLST[i][j]+subrecurse(i+1,n-1,formLST))
 
-def recurse(i,n,formLST):
+def recurse(i,k,n,formLST):
     lst = []
-    for j in range(3):
-        lst.append(formLST[0][j]+recurse(1,n-1,formLST))
+    if n == 0:
+        return ['']
+    else:
+        for j in range(3):
+            lst.append([formLST[0][k]]+recurse(1,0,n-1,formLST))
+            lst.append([formLST[0][k]]+recurse(1,1,n-1,formLST))
+            lst.append([formLST[0][k]]+recurse(1,2,n-1,formLST))
+
     return lst
 
 def solve(dial, numstr):
@@ -17,7 +28,7 @@ def solve(dial, numstr):
         for i,j in dial.items():
             if ch == i:
                 formLST.append(j)
-    newlst = recurse(0,len(numstr),formLST)
+    newlst = recurse(0,0,len(numstr),formLST)
 
 def main():
     dial = {}
@@ -41,7 +52,7 @@ def main():
     dial['9'] = "WXY"
     
     f = open("namenum.out", "w")
-    f.write(solve(dial,numstr))
+    f.write(str(solve(dial,numstr)))
     f.close()
 
 if __name__ == "__main__":
