@@ -16,10 +16,11 @@ def recurse(i,k,n,formLST):
         return ['']
     else:
         for j in range(3):
-            lst.append([formLST[0][k]]+recurse(1,0,n-1,formLST))
-            lst.append([formLST[0][k]]+recurse(1,1,n-1,formLST))
-            lst.append([formLST[0][k]]+recurse(1,2,n-1,formLST))
+            lst.append([formLST[0][k]]+recurse(1,0,n-1,formLST)+recurse(2,0,n-1,formLST))
+            lst.append([formLST[0][k]]+recurse(1,1,n-1,formLST)+recurse(2,1,n-1,formLST))
+            lst.append([formLST[0][k]]+recurse(1,2,n-1,formLST)+recurse(2,2,n-1,formLST))
 
+    print(lst)
     return lst
 
 def solve(dial, numstr):
