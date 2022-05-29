@@ -10,26 +10,30 @@ def subrecurse(i,n,formLST):
         for j in range(3):
             return (formLST[i][j]+subrecurse(i+1,n-1,formLST))
 
-def recurse(i,k,n,formLST):
+def recurse(i,z,n,formLST):
     lst = []
-    if n == 0:
-        return ['']
-    else:
-        for j in range(3):
-            lst.append([formLST[0][k]]+recurse(1,0,n-1,formLST)+recurse(2,0,n-1,formLST))
-            lst.append([formLST[0][k]]+recurse(1,1,n-1,formLST)+recurse(2,1,n-1,formLST))
-            lst.append([formLST[0][k]]+recurse(1,2,n-1,formLST)+recurse(2,2,n-1,formLST))
-
+    for j in range(len(formLST[0])):
+        for k in range(len(formLST[1])):
+            for l in range(len(formLST[2])):
+                for m in range(len(formLST[3])):
+                    lst.append(formLST[0][j]+formLST[1][k]+formLST[2][l]+formLST[3][m])
     print(lst)
     return lst
 
-def solve(dial, numstr):
+def solve(lst,dial, numstr):
     formLST = []
     for ch in numstr:
         for i,j in dial.items():
             if ch == i:
                 formLST.append(j)
     newlst = recurse(0,0,len(numstr),formLST)
+    preplst = [i for i in lst if (len(i) == len(numstr)) ] 
+
+    for i in newlst:
+        for j in preplst:
+            if i == j:
+                return i
+    return "NONE"
 
 def main():
     dial = {}
@@ -51,9 +55,9 @@ def main():
     dial['7'] = "PRS"
     dial['8'] = "TUV"
     dial['9'] = "WXY"
-    
+
     f = open("namenum.out", "w")
-    f.write(str(solve(dial,numstr)))
+    f.write(str(solve(lst,dial,numstr)))
     f.close()
 
 if __name__ == "__main__":
