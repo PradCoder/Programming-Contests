@@ -3,17 +3,20 @@ ID: 2010pes1
 TASK: namenum
 LANG: PYTHON3
 '''
-def subrecurse(
-
 def recurse(formLST,i,n,lenstr):
     if n == lenstr:
         return ''
     else:
-           [ formLST[n][0] + recurse(formLST,i,n+1,lenstr)
-            ,formLST[n][1] + recurse(formLST,i,n+1,lenstr)
-            ,formLST[n][2] + recurse(formLST,i,n+1,lenstr)
-            ]
-
+        return [ formLST[n][0] + recurse(formLST,0,n+1,lenstr)
+               , formLST[n][0] + recurse(formLST,1,n+1,lenstr)
+               , formLST[n][0] + recurse(formLST,2,n+1,lenstr)
+               , formLST[n][1] + recurse(formLST,0,n+1,lenstr)
+               , formLST[n][1] + recurse(formLST,1,n+1,lenstr)
+               , formLST[n][1] + recurse(formLST,2,n+1,lenstr)
+               , formLST[n][2] + recurse(formLST,0,n+1,lenstr)
+               , formLST[n][2] + recurse(formLST,1,n+1,lenstr)
+               , formLST[n][2] + recurse(formLST,2,n+1,lenstr)
+                ]
 '''
 G - P
   - R
