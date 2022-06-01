@@ -30,6 +30,7 @@ I - P
   - R 
   - S
 '''           
+'''
 def recurse(i,z,n,formLST):
     lst = []
     for j in range(len(formLST[0])):
@@ -39,6 +40,7 @@ def recurse(i,z,n,formLST):
                     lst.append(formLST[0][j]+formLST[1][k]+formLST[2][l]+formLST[3][m])
     print(lst)
     return lst
+'''
 
 def solve(lst,dial, numstr):
     formLST = []
