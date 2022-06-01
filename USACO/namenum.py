@@ -38,6 +38,10 @@ def recurse(i,z,n,formLST):
             for l in range(len(formLST[2])):
                 for m in range(len(formLST[3])):
                     lst.append(formLST[0][j]+formLST[1][k]+formLST[2][l]+formLST[3][m])
+    done = False
+    star = [0 for i in formLST]
+    while(not done):
+                    lst.append(formLST[0][j]+formLST[1][k]+formLST[2][l]+formLST[3][m])
     print(lst)
     return lst
 '''
