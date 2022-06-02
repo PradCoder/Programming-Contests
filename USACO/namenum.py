@@ -3,63 +3,18 @@ ID: 2010pes1
 TASK: namenum
 LANG: PYTHON3
 '''
-def recurse(formLST,i,n,lenstr):
-    if n == lenstr:
-        return ''
-    else:
-        return [ formLST[n][0] + recurse(formLST,0,n+1,lenstr)
-               , formLST[n][0] + recurse(formLST,1,n+1,lenstr)
-               , formLST[n][0] + recurse(formLST,2,n+1,lenstr)
-               , formLST[n][1] + recurse(formLST,0,n+1,lenstr)
-               , formLST[n][1] + recurse(formLST,1,n+1,lenstr)
-               , formLST[n][1] + recurse(formLST,2,n+1,lenstr)
-               , formLST[n][2] + recurse(formLST,0,n+1,lenstr)
-               , formLST[n][2] + recurse(formLST,1,n+1,lenstr)
-               , formLST[n][2] + recurse(formLST,2,n+1,lenstr)
-                ]
-'''
-G - P
-  - R
-  - S
 
-H - P
-  - R 
-  - S
-
-I - P 
-  - R 
-  - S
-'''           
-'''
-def recurse(i,z,n,formLST):
-    lst = []
-    for j in range(len(formLST[0])):
-        for k in range(len(formLST[1])):
-            for l in range(len(formLST[2])):
-                for m in range(len(formLST[3])):
-                    lst.append(formLST[0][j]+formLST[1][k]+formLST[2][l]+formLST[3][m])
-    done = False
-    star = [0 for i in formLST]
-    while(not done):
-                    lst.append(formLST[0][j]+formLST[1][k]+formLST[2][l]+formLST[3][m])
-    print(lst)
-    return lst
-'''
-
-def solve(lst,dial, numstr):
-    formLST = []
-    for ch in numstr:
-        for i,j in dial.items():
-            if ch == i:
-                formLST.append(j)
-    newlst = recurse(0,0,len(numstr),formLST)
-    preplst = [i for i in lst if (len(i) == len(numstr)) ] 
-
-    for i in newlst:
-        for j in preplst:
-            if i == j:
-                return i
-    return "NONE"
+def solve(lst, dial, rdial, numstr):
+    mklst = []
+    preplst = [i for i in lst if (len(i) == len(numstr))] 
+    for word in preplst:
+        recstr = ''
+        for ch in word:
+            if ch in rdial:
+                recstr += rdial[ch]
+        if numstr == recstr:
+            mklst.append(word)
+    return mklst
 
 def main():
     dial = {}
@@ -70,7 +25,6 @@ def main():
     f.close()
     f = open("namenum.in", "r")
     numstr = f.read().strip()
-    print(numstr)
     f.close()
 
     dial['2'] = "ABC"
@@ -82,8 +36,18 @@ def main():
     dial['8'] = "TUV"
     dial['9'] = "WXY"
 
+    rdial = {}
+    for i in dial:
+        for j in range(3):
+            rdial[dial[i][j]] = i
+    
     f = open("namenum.out", "w")
-    f.write(str(solve(lst,dial,numstr)))
+    ans = solve(lst,dial,rdial,numstr)
+    if len(ans) == 0:
+        f.write(str("NONE")+'\n')
+    else:
+        for i in ans:
+            f.write(str(i)+'\n')
     f.close()
 
 if __name__ == "__main__":
