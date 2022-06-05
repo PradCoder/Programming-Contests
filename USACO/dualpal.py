@@ -17,22 +17,29 @@ def convert(n,i,nums):
 # with every other base to find a solution (ex: bases, 3 or 4 or 5 or 6.. or 10)
 # in case there are lesser solutions than the current one 
 # store the first n numbers greater than s, that satisfy the above condition in memory
+def checkPal(lst):
+    p = True
+    for j in range(len(lst)//2):
+        if lst[j] != lst[len(lst)-1-j]:
+            p = False
+            break
+    return p
+
 def solve(n,s,nums):
     f = open("dualpal.out","w")
     i = 0
-    for k in range (2,10+1):
-        val = s+1
-        while i < n:
+    val = s+1
+    while i < n:
+        counter = 0
+        for k in range (2,10+1):
             lst = convert(k,val,nums)
-            p = True
-            for j in range(len(lst)//2):
-                if lst[j] != lst[len(lst)-1-j]:
-                    p = False
-                    break
+            p = checkPal(lst)
             if p and i<n:
-                f.write(f"{val}\n") 
-                i+=1
-            val+=1
+                counter+=1
+                if counter > 1:
+                    f.write(f"{val}\n")
+                    i+=1
+        val+=1
     f.close()
 
 def main():
