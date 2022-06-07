@@ -39,6 +39,7 @@ def solve(n,s,nums):
                 if counter > 1:
                     f.write(f"{val}\n")
                     i+=1
+                    break
         val+=1
     f.close()
 
