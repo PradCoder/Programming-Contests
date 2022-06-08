@@ -10,12 +10,11 @@ def solve(n,m,lst):
     lst.sort(key=lambda x: x[0])
     for i in range(len(lst)):
         if n >= lst[i][1]:
-            m -= lst[i][1]
+            n -= lst[i][1]
             acc += lst[i][0] * lst[i][1]
         else:
             acc += lst[i][0] * n
             break
-        print(acc)
     return acc
 def main():
     f = open("milk.in","r")
