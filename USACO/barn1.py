@@ -8,11 +8,17 @@ def solve(m,s,c,lst):
     fin = lst[-1]
     count = 0
     countalt = 0
-    for i in range(star,fin+1):
-        if(i != lst[count]):
+    outmove = []
+    i = star
+    while i < fin+1:
+        countalt = 0
+        while (i != lst[count]):
             countalt += 1
-        else:
             count+=1
+            i+= 1
+        outmove.append(countalt)
+        i+=1
+    #outmove[i-1] = outmove 
     #think about taking out the bigger spaces
     return countalt
 
