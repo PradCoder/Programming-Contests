@@ -38,6 +38,7 @@ def solve(m,s,c,lst):
         if (countalt > 0):
             outmove.append(countalt)
         count += 1
+        print(countalt)
         i+=1
     outmove.sort()
     ans =  c
