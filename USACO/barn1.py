@@ -4,23 +4,13 @@ TASK: barn1
 LANG: PYTHON3
 
 Failing case:
-50 200 10
-18
-69
-195
-38
-73
-28
-6
-172
-53
-99
+(too long for the margins of this terminal, i.e. check barn1.in)
 
 Expected Ans:
-10
+100
 
 Given ans:
-190
+195
 '''
 def solve(m,s,c,lst):
     lst.sort()
@@ -37,15 +27,16 @@ def solve(m,s,c,lst):
             i += 1
         if (countalt > 0):
             outmove.append(countalt)
+            print(countalt)
         count += 1
-        print(countalt)
         i+=1
     outmove.sort()
     ans =  c
+    print(c,sum(outmove[:-(m-1)]),len(outmove))
     if (len(outmove)>m):
         ans += sum(outmove[:-(m-1)])
     else:
-        ans += sum(outmove)
+        ans += 0 if m > c else sum(outmove)
     return ans
 
 def main():
