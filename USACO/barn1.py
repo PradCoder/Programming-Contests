@@ -4,6 +4,9 @@ TASK: barn1
 LANG: PYTHON3
 
 Failing case:
+M (max number of boards)
+S (total number of stalls)
+C (occupied stall numbers)
 (too long for the margins of this terminal, i.e. check barn1.in)
 
 Expected Ans:
@@ -36,7 +39,7 @@ def solve(m,s,c,lst):
     if (len(outmove)>m):
         ans += sum(outmove[:-(m-1)])
     else:
-        ans += 0 if m > c else sum(outmove)
+        ans = c if m > c else sum(outmove)
     return ans
 
 def main():
