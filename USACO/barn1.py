@@ -35,7 +35,7 @@ def solve(m,s,c,lst):
         i+=1
     outmove.sort()
     ans =  c
-    print(c,sum(outmove[:-(m-1)]),len(outmove))
+    print(sum(outmove),c,sum(outmove[:-(m-1)]),len(outmove))
     if (len(outmove)>m):
         ans += sum(outmove[:-(m-1)])
     else:
