@@ -23,23 +23,25 @@ def solve(m,s,c,lst):
     countalt = 0
     outmove = []
     i = star
+    d = 0 
     while i < fin+1:
         countalt = 0
-        while (i < lst[count]):
+        while (i <= lst[count]):
             countalt += 1
             i += 1
         if (countalt > 0):
             outmove.append(countalt)
-            print(countalt)
+            d+=1
         count += 1
         i+=1
     outmove.sort()
     ans =  c
-    print(sum(outmove),c,sum(outmove[:-(m-1)]),len(outmove))
+
     if (len(outmove)>m):
         ans += sum(outmove[:-(m-1)])
     else:
         ans = c if m > c else sum(outmove)
+
     return ans
 
 def main():
