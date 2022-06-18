@@ -28,12 +28,16 @@ def solve(m,s,c,lst):
     while i < fin+1:
         countalt = 0
         while (i <= lst[count]):
+
             print(count//5,lst[count],end=' ')
+
             countalt += 1
             i += 1
         if (countalt > 0):
             outmove.append(countalt)
+
             print(countalt)
+
             d+=1
         count += 1
         i+=1
