@@ -15,6 +15,7 @@ Expected Ans:
 Given ans:
 195
 '''
+
 def solve(m,s,c,lst):
     lst.sort()
     star = lst[0]
@@ -23,19 +24,23 @@ def solve(m,s,c,lst):
     countalt = 0
     outmove = []
     i = star
-    d = 0 
+    print(lst[count])
     while i < fin+1:
         countalt = 0
         while (i <= lst[count]):
+            print(count//5,lst[count],end=' ')
             countalt += 1
             i += 1
         if (countalt > 0):
             outmove.append(countalt)
+            print(countalt)
             d+=1
         count += 1
         i+=1
     outmove.sort()
     ans =  c
+
+    print(len(lst),d,sum(outmove),c,sum(outmove[:-(m-1)]),len(outmove))
 
     if (len(outmove)>m):
         ans += sum(outmove[:-(m-1)])
