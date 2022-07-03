@@ -16,7 +16,7 @@ int sub(int a, int b) {
 }
 
 int mult(int a, int b) {
-    return 111 * a * b % MOD;
+    return 1ll * a * b % MOD;
 }
 
 int power(int a, int b) {
