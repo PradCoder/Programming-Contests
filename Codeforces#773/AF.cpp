@@ -28,7 +28,8 @@ public:
     size_t operator()(const pair<int,int>& key) const {
         return ((ll)(key.first + X) << 30LL) + (ll
     }
-}
+};
+
 struct helper {
     int R = 0;
     int l = 0;
@@ -36,5 +37,26 @@ struct helper {
     unordered_map<pair<int,int>, unordered_set<int>, Hasher> in;
 
     template <typename P>
+    void upload(int x, int y, P pred) {
+        int xi = divide(x, R);
+        int yi = divide(y, R);
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = 1; dy <= 1; dy++) {
+                auto it = in.find(make_pair(xi + dx, yi +dy));
+                if (it != in.end()) {
+                    for (int i : it->second) {
+                        if (pred(i)) {
+                            idx[sz_idx++] = i;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    void add(int i) {
+        int xi = divide(::x[i], R);
+        int yi = divide(::y[i], R);
+        in[make_pair(xi, yi)].insert(i);
+    }
 }
