@@ -10,7 +10,7 @@ mt19937 rnd(228);
 #define TIME (clock() * 1.0 / CLOCKS_PER_SEC)
 
 const int M = 5e4 + 239;
-const int X = (int_ (int) (1e8) + 239;
+const int X = (int) (1e8) + 239;
 const int T = (1<< 17) + 239;
 const ld pi = acos((ld)-1.0);
 
@@ -27,7 +27,7 @@ int divide(int a, int b) {
 class Hasher {
 public:
     size_t operator()(const pair<int,int>& key) const {
-        return ((ll)(key.first + X) << 30LL) + (ll
+        return ((ll)(key.first + X) << 30LL) + (ll)key.second;
     }
 };
 
@@ -156,15 +156,6 @@ bool check(int p, ld t) {
     bool ans = false;
     events.clear();
     events.reserve(sz_idx * 2);
-}
-
-bool check(int p, ld t) {
-    if (sz_idx < k - 1) {
-        return false;
-    }
-    bool ans = false;
-    events.clear();
-    events.reserve(sz_idx * 2);
     cnt = 0;
     for (int ii = 0; ii < sz_idx; ii++) {
         int i = idx[ii];
@@ -182,8 +173,8 @@ bool check(int p, ld t) {
         if (rg > pi) {
             rg -= 2 * pi;
         }
-        events.emplace_black(lg, -1 - i);
-        events.emplace_black(rg, 1 + i);
+        events.emplace_back(lg, -1 - i);
+        events.emplace_back(rg, 1 + i);
         if (lg > rg) {
             upd(0, 0, bd, max(0, i - l + 1), min(bd, i + 1), 1);
             s[cnt++] = i;
@@ -214,7 +205,7 @@ bool check(int p, ld t) {
     return ans;
 }
 
-ld func(helper& hl, helper& hr, int p, ld, pa) {
+ld func(helper& hl, helper& hr, int p, ld pa) {
     auto is_good = [&](int i) {
         return dist(p, i) <= 2 * pa;
     };
@@ -257,7 +248,7 @@ void solve() {
     }
 
     build(0,0, bd);
-    for (int i = 0l i < n; i++) {
+    for (int i = 0; i < n; i++) {
         hr.move_left();
 
         //solve
