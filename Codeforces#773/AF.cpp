@@ -42,7 +42,7 @@ struct helper {
         int xi = divide(x, R);
         int yi = divide(y, R);
         for (int dx = -1; dx <= 1; dx++) {
-            for (int dy = 1; dy <= 1; dy++) {
+            for (int dy = -1; dy <= 1; dy++) {
                 auto it = in.find(make_pair(xi + dx, yi +dy));
                 if (it != in.end()) {
                     for (int i : it->second) {
