@@ -1,12 +1,13 @@
 #include "bits/stdc++.h"
 
-int main(){
-    cin >> n;
-    vector<pair<int,int>> pa;
-    vector<pair<int,int>> pa = vector<pair<int,int>>(0,n);
-    for(int i = 0; i < n; i++){
-        cin >> pa[i].first >> pa[i].second;
-    }
+using namespace std;
 
+int main(){
+    int t;
+    cin >> t;
+    for (int i = 0; i < t; i++) {
+        int a,b;
+        cin >> a >> b;  
+    }
     return 0;
 }
