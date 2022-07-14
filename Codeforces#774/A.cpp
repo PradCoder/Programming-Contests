@@ -8,6 +8,7 @@ int main(){
     for (int i = 0; i < t; i++) {
         int a,b;
         cin >> a >> b;  
+        cout << (b/(a*a)) << endl;
     }
     return 0;
 }
