@@ -6,9 +6,10 @@ int main(){
     int t;
     cin >> t;
     for (int i = 0; i < t; i++){
-        long long n,s;
-        cin >> n >> s;
-        cout << s/(n*n) << endl;
+        long u, v;
+        cin >> u >> v;
+        cout <<  << endl;
     }
     return 0;
 }
+
