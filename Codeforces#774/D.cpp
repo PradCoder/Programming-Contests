@@ -27,7 +27,7 @@ pair<int, int> dp[MAXN][2];
 //Computes the value of function f, using dp
 //the second coordinate of the pair negated (to take maximums)
 pair<int, int> f(int x, int y) {
-    pair<int, in> & res = dp[x][y];
+    pair<int, int> & res = dp[x][y];
     if(res.first >= 0) return res;
     res = {y, y ? -((int) g[x].size()) : -1};
     for(auto i : g[x]){
@@ -64,13 +64,31 @@ void build(pair<int,int> value, int v){
 }
 
 int main(){
-    int t;
-    cin >> t;
-    for (int i = 0; i < t; i++){
-        long u, v;
-        cin >> u >> v;
-        cout <<  << endl;
+    ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int n; cin >> n;
+    for (int i = 0; i < n; i++){
+        int u, v;
+        cin >> u >> v; u--;v--;
+        g[u].push_back(v);
+        g[u].push_back(u);
     }
+    if(n == 2){
+        cout <<"2 2\n1 1\n";
+        return 0;    
+    }
+    pa[0] = -1;
+    dfs(0);
+    for(int i = 0; i < n; i++){
+        dp[i][0] = {-1, -1}, dp[i][1] = {-1, -1};
+    }
+    pair<int,int> res = max(f(0,0), f(0,1));
+    cout << res.first << " " << -res.second << "\n";
+    is_good.resize(n);
+    build(res,0);
+    for(int i = 0; i < n; i++){
+        if(is_good[i]) cout << g[i].size() << " ";
+        else cout << "1 ";
+    }
+    cout << "\n";
     return 0;
 }
-
