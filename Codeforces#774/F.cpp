@@ -8,7 +8,7 @@ const int MAXN = 1010;
 int c[MAXN][MAXN];
 
 //extras[i] is the stack of repeated cards for player i
-vector<int> extras [MAXN];
+vector<int> extras[MAXN];
 
 int main(){
     ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
@@ -17,7 +17,7 @@ int main(){
         fore(j,0,n){
             int x; cin >> x; x--;
             c[i][x]++;
-            if(c[i][x] > 1) extras.push_back(x);
+            if(c[i][x] > 1) extras[i].push_back(x);
         }
     }
     vector<vector<int>> res;
