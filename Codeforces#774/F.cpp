@@ -20,7 +20,51 @@ int main(){
             if(c[i][x] > 1) extras.push_back(x);
         }
     }
-    vector<vector<int> res;
+    vector<vector<int>> res;
     //First part
+    while(true){
+        //oper
+        vector<int> oper(n);
+
+        int s = -1;
+        fore(i,0,n){
+            if(extras[i].size()){
+                s = i;
+                break;
+            }
+        }
+        if(s == -1) break;
+
+        int last_card = -1;
+        fore(i, s, s+n){
+                int real_i = i%n;
+                if(extras[real_i].size()){
+                        last_card = extras[real_i].back();
+                        extras[real_i].pop_back();
+                }
+                oper[real_i] = last_card;
+        }
+        res.push_back(oper);
+        fore(i, 0, n){
+                int i_next = (i + 1) % n;
+                c[i][oper[i]]--;
+                c[i_next][oper[i]]++;
+        }
+        fore(i, 0, n){
+                int i_next = (i + 1) % n;
+                if(c[i_next][oper[i]] > 1) extras[i_next].push_back(oper[i]);
+        }
+    }
+    //Second part
+    fore(j, 1, n){
+            vector<int> oper;
+            fore(i, 0, n) oper.push_back((i - j + n) % n);
+            fore(i, 0, j) res.push_back(oper);
+    }
+    cout << res.size() << "\n";
+    for(auto i : res){
+            for(auto j : i) cout << j + 1 << " ";
+            cout << "\n";
+    }
     return 0;
 }
