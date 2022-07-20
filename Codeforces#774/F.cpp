@@ -23,9 +23,9 @@ int main(){
     vector<vector<int>> res;
     //First part
     while(true){
-        //oper
+        //oper will describe the next operation to perform
         vector<int> oper(n);
-
+        //s will be the first non-diverse player
         int s = -1;
         fore(i,0,n){
             if(extras[i].size()){
@@ -34,7 +34,7 @@ int main(){
             }
         }
         if(s == -1) break;
-
+        //last_card will be the card that the previous player passed
         int last_card = -1;
         fore(i, s, s+n){
                 int real_i = i%n;
