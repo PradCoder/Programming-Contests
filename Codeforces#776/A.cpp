@@ -2,40 +2,19 @@
 
 using namespace std;
 
+#define forn(i,n) for (int i = 0; i < int(n); i++)
+
 int main(){
     int t;
     cin >> t;
-    for (int i = 0; i < t; i++){
-        int n;
-        cin >> n;
-        vector<int> vi = vector<int> (n,0);
-
-        for (int j = 0; j < n; j++) {
-            int a;
-            cin >> a;
-            vi[j] = a;
-        }
-        for(int i : vi){
-            //cout << i << " ";
-        }
-
-        cout << endl;
-        int r = 0, l = n-1;
-
-        while( vi[r+1] != 0){
-            r++;
-        }
-        while( vi[l-1] != 0){
-            l--;
-        }
-        
-        /*
-        if(r == 0 && l == n-1){
-            cout << "0\n";
-        }else{
-            cout << (l-r) << endl;
-        }
-        */
+    forn(tt,t) {
+        string s, a;
+        cin >> s >> a;
+        bool yes = false;
+        forn(i, s.length())
+            if (s[i] == a[0] && i % 2 == 0)
+                yes = true;
+        cout << (yes ? "YES" : "NO") << "\n";
     }
     return 0;
 }
