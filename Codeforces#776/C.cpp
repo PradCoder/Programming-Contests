@@ -1,45 +1,48 @@
 #include "bits/stdc++.h"
-
 using namespace std;
+using ll = long long;
 
-const long long MAXAI = 1000000000000ll;
+#define forn(i,n) for (int i = 0; i < int(n); i++)
 
-int get_first_bit(long long n) {
-    return 63 - __builtin_clzll(n);
-}
+struct point{
+    int weight, position, id;  
+};
 
-int get_bit_count(long long n) {
-    return __builtin_popcountll(n);
+void solve(){
+    int n, m;
+    cin >> n >> m;
+    vector<point> points(m);
+
+    forn(i, m) {
+        cin >> points[i].position >> points[i].weight;
+        points[i]. id = i + 1;
+    }
+
+    sort(points.begin(), points.end(), [] (point a, point b) {
+                return a.weight < b.weight;
+            });
+
+    int sum = 0;
+    forn(i, m){
+        if(i < 2 * n) sum += points[i].weight;
+        else points.pop_back();
+    }
+
+    sort(points.begin(), points.end(), [] (point a, point b) {
+                return a.position < b.position;
+            });
+
+    cout << sum << endl;
+    forn(i, n){
+        cout << points[i].id << " " << points[2 * n - i - 1].id << endl;
+    }
 }
 
 int main(){
-    ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-    int t; cin >> t;
-    for(int test_number = 0; test_number < t; test_number++){
-        long long n; cin >> n;
-        //Computing factorials <= MAXAI
-        vector<long long> fact;
-        long long factorial = 6, number = 4;
-        while (factorial <= MAXAI) {
-            fact.push_back(factorial);
-            factorial *= number;
-            number++;
-        }
-        //Computing masks of factorials
-        vector<pair<long long, long long>> fact_sum(1 << fact.size());
-        fact_sum[0] = {0,0};
-        for(int mask = 1; mask < (1 << fact.size()); mask++){
-                auto first_bit = get_first_bit(mask);
-                fact_sum[mask].first = fact_sum[mask ^ (1 << first_bit)].first + fact[first_bit];
-                fact_sum[mask].second = get_bit_count(mask);
-        }
-        long long res = get_bit_count(n);
-        for(auto i : fact_sum){
-                if(i.first <= n){
-                        res = min(res, i.second + get_bit_count(n - i.first));
-                }
-        }
-        cout << res << "\n";
+    int t;
+    cin >> t;
+    while(t--){
+        solve();
     }
     return 0;
 }
