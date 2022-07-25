@@ -1,36 +1,35 @@
-#include "bits/stdc++.h"
-#include <string.h>
-
+#include<bits/stdc++.h>
 using namespace std;
+#define forn(i, n) for (int i = 0; i < int(n); i++)
 
+
+void solve(){
+    int n, k;
+    cin >> n >> k;
+    map<int, pair<int, int>>m;
+    forn(i, n){
+        int u;
+        cin >> u;
+        if(!m.count(u)) {
+            m[u].first = i;
+            m[u].second = i;
+        }
+        else m[u].second = i;
+    }
+    forn(i, k){
+        int a, b;
+        cin >> a >> b;
+        if(!m.count(a) or !m.count(b) or m[a].first > m[b].second) {
+            cout << "NO\n"; //equals = 0 = wrong
+        }
+        else cout << "YES\n";
+    }
+}
 
 int main(){
     int t;
     cin >> t;
-    for (int i = 0; i < t; i++){
-        int n;
-        cin >> n;
-        vector<int> cm = vector<int> (n,0);
-        for (int j = 0; j < n; j++){
-            cin >> cm[j];
-        }
-        for (int j = 0; j < n; j++){
-            int bi;
-            cin >> bi;
-            string s;
-            cin >> s;
-            for(int k = 0; k < bi; k++){
-                if('D' == s[k]){
-                    cm[j] = (10+cm[j]+1)%10;
-                }else{
-                    cm[j] = (10+cm[j]-1)%10;
-                }
-            }
-        }
-        for(int j = 0;j < n-1; j++){
-            cout << cm[j] << " ";
-        }
-        cout << cm[n-1] << "\n";
+    while(t--){
+        solve();
     }
-    return 0;
 }
