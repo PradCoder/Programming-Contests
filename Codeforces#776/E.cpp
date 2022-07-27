@@ -1,41 +1,75 @@
 #include "bits/stdc++.h"
-#define fore(i,a,b) for(ll i=a, ggdem=b;i<ggdem;++i)
 
-using namespace std;
+#define int long long
+#define mp make_pair
+#define x first
+#define y second
+#define all(a) (a).begin(), (a).end()
+#define rall(a) (a).rbegin(), (a).rend()
+
+typedef long double ld;
 typedef long long ll;
 
-const int MAXM = 1000006;
+using namespace std;
 
-const int MAXLOGN = 20;
+mt19937 rnd(143);
 
-bool visited_mul[MAXM*MAXLOGN];
+const ll inf = 1e9;
+const ll M = 998'244'353;
+const ld pi = atan2(0, -1);
+const ld eps = 1e-4;
 
-int main(){
-    ll n, m; cin >> n >> m;
-    vector<ll> mul_quan(MAXLOGN);
-    ll current_vis = 0;
-    fore(i, 1, MAXLOGN) {
-        fore(j, 1, m+1){
-            if(!visited_mul[i*j]){
-                visited_mul[i * j] = 1;
-                current_vis++;
-            }
-        }
-        mul_quan[i] = current_vis;
+int n, d;
+
+int cnt(vector<int> &schedule){
+    int mx = 0, mn = inf;
+    for(int i = 1; i < n; ++i){
+        mx = max(mx, schedule[i] - schedule[i - 1] - 1);
+        mn = min(mn, schedule[i] - schedule[i - 1] - 1);
     }
-    ll res = 1;
-    vector<ll> vis(n+1);
-    fore(i, 2, n+1){
-        if(vis[i]) continue;
-        ll power = i, power_quan = 0;
-        while(power <= n){
-            vis[power] = 1;
-            power_quan++;
-            power *= i;
-        }
-        res += mul_quan[power_quan];
-    }
-    cout << res << "\n";
+    return min(mn, max(d - schedule.back() - 1, (mx - 1) / 2));
+}
 
+void solve(int test_case) {
+    cin >> n >> d;
+    vector<int> a(n + 1);
+    int mn = d, min_pos = 0;
+    for(int i = 1; i <= n; ++i){
+        cin >> a[i];
+        if(a[i] - a[i - 1] - 1 < mn){
+            mn = a[i] - a[i - 1] - 1;
+            min_pos = i;
+        }
+    }
+    vector<int> schedule;
+    for(int i = 0; i <= n; ++i){
+        if(i != min_pos){
+            schedule.push_back(a[i]);
+        }
+    }
+    int ans = cnt(schedule);
+    if(min_pos > 1){
+        schedule[min_pos - 1] = a[min_pos];
+    }
+    ans = max(ans, cnt(schedule));
+    cout << ans;
+}
+
+bool multi = true;
+
+signed main() {
+    //freopen("in.txt", "r", stdin);
+    //freopen("in.txt", "w", stdout);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    int t = 1;
+    if (multi) {
+        cin >> t;
+    }
+    for (int i = 1; i <= t; ++i) {
+        solve(i);
+        cout << "\n";
+    }
     return 0;
 }
