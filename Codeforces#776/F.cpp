@@ -1,70 +1,56 @@
 #include "bits/stdc++.h"
-#define fore(i,a,b) for(int i = a; i < b; ++i)
+
 using namespace std;
 
-const int MAXN = 1010;
+template<class T> bool ckmin(T &a, T b) {return a > b ? a = b, true : false;}
 
-//c[i][j] = number of cards player i has. with the number j
-int c[MAXN][MAXN];
+#define forn(i,n) for (int i=0; i < int(n); i++)
+#define sz(v) (int)v.size()
+#define all(v) v.begin(), v.end()
 
-//extras[i] is the stack of repeated cards for player i
-vector<int> extras[MAXN];
+struct option {
+    int t, p, id;
+    option(int _t, int _p, int _id) : t(_t), p(_p), id(_id) {
+    }
+};
 
-int main(){
-    ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-    int n; cin >> n;
-    fore(i,0,n){
-        fore(j,0,n){
-            int x; cin >> x; x--;
-            c[i][x]++;
-            if(c[i][x] > 1) extras[i].push_back(x);
+const int INF = INT_MAX >> 1;
+
+vector<int> get_ans(vector<option> &v){
+    int n = sz(v);
+    vector<vector<int>> dp(101, vector<int>(n+1, INF));
+    dp[0][0] = 0;
+    for (int k = 1; k <=n; k++){
+        auto [t,p,id] = v[k-1];
+        dp[0][k] = 0;
+        for (int i = 100; i > 0; i--){
+            int prev = max(0, i-p);
+            dp[i][k] = dp[i][k-1];
+            ckmin(dp[i][k], dp[prev][k-1] + t);
         }
     }
-    vector<vector<int>> res;
-    //First part
-    while(true){
-        //oper will describe the next operation to perform
-        vector<int> oper(n);
-        //s will be the first non-diverse player
-        int s = -1;
-        fore(i,0,n){
-            if(extras[i].size()){
-                s = i;
-                break;
-            }
+
+    vector<int> ans;
+    int t = dp[100][n];
+    if (t == INF) return {-1};
+    for (int i = 100; k = n; k >= 1; k--){
+        if (dp[i][k] == dp[i][k-1]){
+            continue;
         }
-        if(s == -1) break;
-        //last_card will be the card that the previous player passed
-        int last_card = -1;
-        fore(i, s, s+n){
-                int real_i = i%n;
-                if(extras[real_i].size()){
-                        last_card = extras[real_i].back();
-                        extras[real_i].pop_back();
-                }
-                oper[real_i] = last_card;
-        }
-        res.push_back(oper);
-        fore(i, 0, n){
-                int i_next = (i + 1) % n;
-                c[i][oper[i]]--;
-                c[i_next][oper[i]]++;
-        }
-        fore(i, 0, n){
-                int i_next = (i + 1) % n;
-                if(c[i_next][oper[i]] > 1) extras[i_next].push_back(oper[i]);
-        }
+        ans.emplace_back(v[k-1].id);
+        i = max(0, i-v[k-1].p);
     }
-    //Second part
-    fore(j, 1, n){
-            vector<int> oper;
-            fore(i, 0, n) oper.push_back((i - j + n) % n);
-            fore(i, 0, j) res.push_back(oper);
+
+    reverse(all(ans));
+    ans.emplace_back(t);
+    return ans;
+}
+
+void solve(bool flag = true){
+
+    int n, m; cin >> n >> m;
+    vector<int> a(n);
+    forn(i, n){
+        
     }
-    cout << res.size() << "\n";
-    for(auto i : res){
-            for(auto j : i) cout << j + 1 << " ";
-            cout << "\n";
-    }
-    return 0;
 }
