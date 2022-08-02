@@ -1,42 +1,53 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
+
 using namespace std;
 
-typedef long long ll;
+int dx[] = {0, 0, -1, 1};
+int dy[] = {-1, 1, 0, 0};
 
-#define forn(i,n) for (int i = 0; i < int(n); i++)
-
-
-void solve(){
+int main() {
+#ifdef _DEBUG
+    freopen("input.txt", "r", stdin);
+//  freopen("output.txt", "w", stdout);
+#endif
+    
     int n;
-    cin >> n;
-    int a[n];
-    for (int i = 0; i < n; ++i){
-        cin >> a[i];
-    }
-    int ans[n];
-    for (int i = n; i > 0; --i){
-        int ind = 0;
-        for (int j = 0; j < i; ++j){
-            ind = a[j] == i ? j : ind;
+    scanf("%d", &n);
+    vector<pair<int, int>> a(n);
+    for (auto &[x, y] : a) scanf("%d %d", &x, &y);
+    
+    set<pair<int, int>> st(a.begin(), a.end());
+    map<pair<int, int>, pair<int, int>> ans;
+    queue<pair<int, int>> q;
+    for (auto [x, y] : a) {
+        for (int i = 0; i < 4; ++i) {
+            int nx = x + dx[i], ny = y + dy[i];
+            if (st.count({nx, ny})) {
+                continue;
+            }
+            ans[{x, y}] = {nx, ny};
+            q.push({x, y});
+            break;
         }
-        int b[i];
-        for (int j = 0; j < i; ++j){
-            b[(i - 1 - ind + j) % i] = a[j]; 
+    }
+    
+    while (!q.empty()) {
+        int x = q.front().first, y = q.front().second;
+        q.pop();
+        for (int i = 0; i < 4; ++i) {
+            int nx = x + dx[i], ny = y + dy[i];
+            if (!st.count({nx, ny}) || ans.count({nx, ny})) {
+                continue;
+            }
+            ans[{nx, ny}] = ans[{x, y}];
+            q.push({nx, ny});
         }
-        for (int j = 0; j < i; ++j){
-            a[j] = b[j];
-        }
-        ans[i - 1] = i != 1 ? (ind + 1) % i : 0;
     }
-    for (int i = 0; i < n; ++i){
-        cout << ans[i] << ' ';
+    
+    for (auto [x, y] : a) {
+        auto it = ans[{x, y}];
+        printf("%d %d\n", it.first, it.second);
     }
-    cout << "\n";
-}
-int main(){
-    int tests;
-    cin >> tests;
-    forn(tt, tests) {
-        solve();
-    }
+    
+    return 0;
 }
