@@ -1,27 +1,36 @@
 #include "bits/stdc++.h"
-
+ 
 using namespace std;
-
-void solve(){
-    int l, r, x;
-    cin >> l >> r >> x;
-    int ans = r/x + r%x;
-    int m = r / x * x - 1;
-    if(m >= l){
-        ans = max(ans, m/x + m % x);
+ 
+void solve() {
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> a(n, vector<int> (m));
+    for (int i = 0; i < n; ++i) {
+        string s;
+        cin >> s;
+        for (int j = 0; j < m; ++j) {
+            a[i][j] = s[j] - '0';
+        }
     }
-    cout << ans;
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < m - 1; ++j) {
+            int sum = a[i][j] + a[i][j + 1] + a[i + 1][j] + a[i + 1][j + 1];
+            if (sum == 3) {
+                cout << "NO\n";
+                return;
+            }
+        }
+    }
+    cout << "YES\n";
 }
-
-int main(){
-    int t = 1;
-    bool multi = true;
-    if (multi) {
-        cin >> t;
-    }
-    for (; t != 0; --t) {
+ 
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t;
+    cin >> t;
+    while (t--)
         solve();
-        cout << "\n";
-    }
-    return 0;
 }
