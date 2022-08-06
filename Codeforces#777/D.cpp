@@ -1,42 +1,50 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
+ 
 using namespace std;
-
-typedef long long ll;
-
-#define forn(i,n) for (int i = 0; i < int(n); i++)
-
-
-void solve(){
-    int n;
-    cin >> n;
-    int a[n];
-    for (int i = 0; i < n; ++i){
-        cin >> a[i];
+ 
+int prime(int x) {
+    for (int i = 2; i * i <= x; ++i) {
+        if (x % i == 0)
+            return i;
     }
-    int ans[n];
-    for (int i = n; i > 0; --i){
-        int ind = 0;
-        for (int j = 0; j < i; ++j){
-            ind = a[j] == i ? j : ind;
-        }
-        int b[i];
-        for (int j = 0; j < i; ++j){
-            b[(i - 1 - ind + j) % i] = a[j]; 
-        }
-        for (int j = 0; j < i; ++j){
-            a[j] = b[j];
-        }
-        ans[i - 1] = i != 1 ? (ind + 1) % i : 0;
-    }
-    for (int i = 0; i < n; ++i){
-        cout << ans[i] << ' ';
-    }
-    cout << "\n";
+    return -1;
 }
-int main(){
-    int tests;
-    cin >> tests;
-    forn(tt, tests) {
-        solve();
+ 
+void solve() {
+    int x, d;
+    cin >> x >> d;
+    int cnt = 0;
+    while (x % d == 0) {
+        ++cnt;
+        x /= d;
     }
+    if (cnt == 1) {
+        cout << "NO\n";
+        return;
+    }
+    if (prime(x) != -1) {
+        cout << "YES\n";
+        return;
+    }
+    if (prime(d) != -1 && d == prime(d) * prime(d)) {
+        if (x == prime(d) && cnt == 3) {
+            cout << "NO\n";
+            return;
+        }
+    }
+    if (cnt > 2 && prime(d) != -1) {
+        cout << "YES\n";
+        return;
+    }
+    cout << "NO\n";
+}
+ 
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }
