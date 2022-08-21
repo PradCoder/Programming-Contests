@@ -45,8 +45,7 @@ def solve(m,s,c,lst):
     ans =  c
 
     for i in range(len(lst)):
-        
-    print(len(lst),d,sum(outmove),c,sum(outmove[:-(m-1)]),len(outmove))
+        print(len(lst),d,sum(outmove),c,sum(outmove[:-(m-1)]),len(outmove))
 
     if (len(outmove)>m):
         ans += sum(outmove[:-(m-1)])
