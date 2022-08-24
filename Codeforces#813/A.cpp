@@ -6,15 +6,17 @@ int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
   
-  int t, n; 
+  int t, n, k; 
   cin >> t;
   while (t--) {
-    cin >> n >> m >> k;
-    vector<int> a(k,0);
-    for (int i = 0; i < k; i++){
-        cout << i << " ";
+    cin >> n >> k;
+    int ans = 0;
+    for (int i = 1; i <= n; i++){
+        int x;
+        cin >> x;
+        if(x > k and i <= k) ans++;
     } 
-    cout << "\n";
+    cout << ans << "\n";
   }
   
 }
