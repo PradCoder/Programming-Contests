@@ -2,35 +2,54 @@
 
 using namespace std;
 
+bool check(vector<int> arr){
+    bool sa = true;
+    int n = arr.size();
+    for(int i = 0; i < n-1; i++){
+        cout << arr[i] << " " << arr[i+1] << "\n";
+        if (abs(arr[i]-arr[i+1]) == 1){
+            sa = false;
+            break;
+        }
+    }
+    cout << sa << "\n";
+    return sa;
+}
+
 int main(){
     int n;
     cin >> n;
-    if(n == 1){
-        cout << 1;
-    }else if( n&1 && n > 3){
-        vector<int> vec = vector<int>(n,0);
-        if(n&1){
-            for(int i = 0; i < n; i++){
-                vec[((2*i)+n-1)%n] = i+1;
-            }
-            int i = 0;
-            for(; i < n-1; i++){
-                cout << vec[i] << " ";
-            }
-            cout << vec[n-1];
-        }else{
+    vector<int> ar(n,0);
+    for (int i = 1; i <= n; i++){
+        ar[i-1] = i; 
+        cout << i << " ";
+    }
+
+    cout << "\n";
+
+    for (int i = 0; i < n; i++){
+        for(int j = i; j < n; j+=2){
+           int a = ar[i%n];
+           ar[i%n] = ar[(i+1)%n];
+           ar[(i+1)%n] = a;
+        }
+        if(check(ar)){
+           break;         
+        }
+        for (int i = 1; i <= n; i++){
+            ar[i-1] = i; 
+            cout << i << " ";
+        }
+        cout << "\n"; 
+    }
+
+    if(check(ar)){
+        for (auto i : ar){
+            cout << i << " ";
         }
     }else{
-        vector<int> vec = vector<int>(n,0);
-        for(int i = 0; i < n; i++){
-            vec[((2*i)+n-1)%n] = i+1;
-        }
-        int i = 0;
-        for(; i < n-1; i++){
-            cout << vec[i] << " ";
-        }
-        cout << vec[n-1];
-        //cout << "NO SOLUTION";
+        cout << "NO SOLUTION";
     }
+    cout << "\n";
     return 0;
 }
