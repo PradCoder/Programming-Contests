@@ -8,8 +8,7 @@ bool check(vector<int> arr){
     for(int i = 0; i < n-1; i++){
         cout << arr[i] << " " << arr[i+1] << "\n";
         if (abs(arr[i]-arr[i+1]) == 1){
-            sa = false;
-            break;
+            sa = !sa;
         }
     }
     cout << sa << "\n";
