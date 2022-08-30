@@ -2,14 +2,16 @@
 
 using namespace std;
 
-int solve(int ans, int x, int y, int n, int m, vector<vector<int>> ans){
-     if(){
-        if((x >= 0 && x < m) && (y >= 0 && y < n){
-                
-        }
-     }else{
-         return min(solve(x,y+1,ans)+solve(x+1,y,ans)+solve(x,y-1,ans)+solve(x-1,y,ans));
-     }
+int solve(int ans, int x, int y, int n, int m, vector<vector<int>> arr){
+  if(arr[n-1][m-1] == 0){
+      return ans;
+  } else if((x >= 0 && x < m) && (y >= 0 && y < n) && (arr[x][y] != 1)){
+      arr[x][y] = 2;
+      ++ans;
+      return min(solve(ans,x,y+1,n,m,arr)+solve(ans,x+1,y,n,m,arr)+solve(ans,x,y-1,n, m, arr)+solve(ans,x-1,y,n,m,arr));
+  } else{
+      return ans;
+  }
 }
 
 int main(){
