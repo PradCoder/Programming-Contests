@@ -8,7 +8,7 @@ int solve(int ans, int x, int y, int n, int m, vector<vector<int>> arr){
   } else if((x >= 0 && x < m) && (y >= 0 && y < n) && (arr[x][y] != 1)){
       arr[x][y] = 2;
       ++ans;
-      return min(solve(ans,x,y+1,n,m,arr)+solve(ans,x+1,y,n,m,arr)+solve(ans,x,y-1,n, m, arr)+solve(ans,x-1,y,n,m,arr));
+      return min(min(solve(ans,x,y+1,n,m,arr),solve(ans,x+1,y,n,m,arr)),min(solve(ans,x,y-1,n, m, arr),solve(ans,x-1,y,n,m,arr)));
   } else{
       return ans;
   }
@@ -31,7 +31,7 @@ int main(){
                     ans[i][j] = 0;
                 }
             }
-            solve(0, sx, sy, n, m, ans);
+            cout << solve(0, sx, sy, n, m, ans) << "\n";
         }
             
         /*
