@@ -1,6 +1,6 @@
 /*
 ID: 2010pes1
-TASK: gift1
+TASK: crypt1
 LANG: C++
 */
 #include "bits/stdc++.h"
@@ -22,6 +22,7 @@ bool containment(set<int> space, string str){
     }
     return is_in;
 }
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -35,6 +36,7 @@ int main(){
     for (int i = 0; i < n; i++) {
         fin >> v[i];
     }
+
     int count = 0;
     
     vector<set<int>> vec(n*n*n*n*n,{0,0,0,0,0});
@@ -62,7 +64,7 @@ int main(){
                         if(containment(space, p1s) && containment(space, p2s)){
                             string str_fin;
                             str_fin = to_string(stoi(p1s) + stoi(p2s));
-                            if(containment(space, str_fin)){
+                            if(str_fin.length() == 3 && p1s.length() == 3 && p2s.length() == 3 && containment(space, str_fin)){
                                 count++;
                             }
                         }
