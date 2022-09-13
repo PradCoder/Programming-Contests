@@ -2,10 +2,6 @@
 
 using namespace std;
 
-inline void test case(){
-
-}
-
 int main(){
     /*
      * M
