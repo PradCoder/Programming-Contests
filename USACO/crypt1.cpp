@@ -46,6 +46,7 @@ int main(){
                 for (int l = 0; l < n; l++){
                     for (int m = 0; m < n; m++){
                         vec[(i*n*n*n*n)+(j*n*n*n)+(k*n*n)+(l*n)+m] = {v[i], v[j], v[k], v[l], v[m]};
+                        cout << (i*n*n*n*n)+(j*n*n*n)+(k*n*n)+(l*n)+m << "\n";
                         string a, b, c, d, e;
                         a = to_string(v[i]);
                         b = to_string(v[j]);
@@ -57,15 +58,16 @@ int main(){
                         int abc, de; // abc and de don't need to be checked as they are
                                      // only contain elements from the set
                         abc = stoi(a+b+c);
-                        de = stoi(d+e);
+                        de = stoi(d+e); 
 
                         string p1s, p2s; //partial products
                         p1s = to_string(abc * stoi(e)); 
-                        p2s = to_string(abc*stoi(d)*10);
-                        
+                        p2s = to_string(abc*stoi(d));
+                        cout << containment(space,(a+b+c)) << containment(space,(d+e))<< "\n"; 
+                        //debug containment 
                         if(containment(space, p1s) && containment(space, p2s)){
                             string str_fin;
-                            str_fin = to_string(stoi(p1s) + stoi(p2s));
+                            str_fin = to_string(stoi(p1s) + stoi(p2s)*10);
                             if(str_fin.length() == 3 && p1s.length() == 3 && p2s.length() == 3 && containment(space, str_fin)){
                                 count++;
                             }
