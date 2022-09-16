@@ -36,7 +36,7 @@ int main(){
     cin.tie(0);
 
     ofstream fout("crypt1.out");
-    ifstream fin("crypt1.in");    
+    ifstream fin("crypt1.in");
 
     int n;
     fin >> n;
