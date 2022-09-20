@@ -3,8 +3,7 @@
 using namespace std;
 
 int solve(){
-
-    return m;
+    return 1;
 }
 
 int main(){
