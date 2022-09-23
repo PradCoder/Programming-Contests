@@ -10,7 +10,7 @@ LANG: C++
 
 using namespace std;
 
-bool containment(set<int> space, string str){
+bool containment(vector<int> space, string str){
     bool is_in = true;
     for (int i = 0; i < str.length(); i++){
         int a = (str[i]-'0'); 
@@ -19,10 +19,10 @@ bool containment(set<int> space, string str){
             for (auto i : space) {
                 cout << i << "\n"; 
             }
-            cout << "Und stuff: " << (space.find(a) != space.end()) << "\n";
+            cout << "Und stuff: " << (find(space.begin(), space.end(), a) != space.end()) << "\n";
             cout << "Ended loop\n";
         }
-        if(space.find(a) != space.end()){
+        if(find(space.begin(), space.end(), a) != space.end()){
             is_in = true; 
         }else{
             return false;
@@ -47,13 +47,14 @@ int main(){
 
     int count = 0;
     
-    vector<set<int>> vec(n*n*n*n*n,{0,0,0,0,0});
+    vector<vector<int>> vec(n*n*n*n*n,{0,0,0,0,0});
     for (int i = 0; i < n; i++){
         for (int j = 0; j < n; j++){
             for (int k = 0; k < n; k++){
                 for (int l = 0; l < n; l++){
                     for (int m = 0; m < n; m++){
-                        vec[(i*n*n*n*n)+(j*n*n*n)+(k*n*n)+(l*n)+m] = {v[i], v[j], v[k], v[l], v[m]};
+                        vector<int> temp = {v[i], v[j], v[k], v[l], v[m]};
+                        vec[(i*n*n*n*n)+(j*n*n*n)+(k*n*n)+(l*n)+m] = temp;
                         //cout << (i*n*n*n*n)+(j*n*n*n)+(k*n*n)+(l*n)+m << "\n";
                         string a, b, c, d, e;
                         a = to_string(v[i]);
@@ -61,7 +62,7 @@ int main(){
                         c = to_string(v[k]);
                         d = to_string(v[l]);
                         e = to_string(v[m]);
-                        set<int> space = {v[i], v[j], v[k], v[l], v[m]};
+                        vector<int> space = {v[i], v[j], v[k], v[l], v[m]};
                         //cout << a << " " << b << " " << " " << c << " " << d << " " << e << endl;
                         int abc, de; // abc and de don't need to be checked as they are
                                      // only contain elements from the set
