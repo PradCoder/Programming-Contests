@@ -2,25 +2,22 @@
 
 using namespace std;
 
-int solve(int n, vector<int> vec){
-    int k = 0;
-    for(int i = 0; i < n; i++){
-        for(int j = i; j < n; j++){
-            
-        }
-    }
-    return 
-}
-
 int main(){
     int tt;
-    int n;
     cin >> tt;
-    cin >> n;
-    vector<int> vec(n,0);
-    for (int i = 0; i < n; i++){
-        cin >> vec[i];
+    while(tt--){
+        int a,b,c;
+        cin >> a >> b >> c;
+        int d1 = a - 1;
+        int d2 = abs(b-c) + c - 1;
+        int ans = 0;
+        if (d1 <= d2){
+            ans += 1;
+        }
+        if(d1 >= d2){
+            ans += 2;
+        }
+        cout << ans << "\n";
     }
-    cout << solve(n, vec) << "\n";
     return 0;
 }
