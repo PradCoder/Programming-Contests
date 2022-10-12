@@ -4,6 +4,7 @@ TASK: crypt1
 LANG: C++
 */
 #include "bits/stdc++.h"
+#include <stdio.h>
 #include <string>
 
 using namespace std;
@@ -22,10 +23,9 @@ int main(){
         fin >> v[i];
     }
 
-    int count = 0;
-    
     vector<vector<int>> vec(n*n*n*n*n,{0,0,0,0,0});
     for (int i = 0; i < n; i++){
+        cout << "in loop\n";
         for (int j = 0; j < n; j++){
             for (int k = 0; k < n; k++){
                 for (int l = 0; l < n; l++){
@@ -43,9 +43,7 @@ int main(){
                             cout << temp[i] << " ";
                         }
 
-                        bool temp = containment(space, str);
-                        cout << << "\n";
-
+                        printf("%d %d %d %d %d\n", v[i], v[j], v[k], v[l], v[m]);
                     }
                 }
             }
