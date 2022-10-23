@@ -39,10 +39,6 @@ int main(){
                         d = to_string(v[l]);
                         e = to_string(v[m]);
 
-                        for (int i = 0; i < temp.size(); i++){
-                            cout << temp[i] << " ";
-                        }
-
                         printf("%d %d %d %d %d\n", v[i], v[j], v[k], v[l], v[m]);
                     }
                 }

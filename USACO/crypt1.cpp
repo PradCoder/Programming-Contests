@@ -53,29 +53,38 @@ int main(){
             for (int k = 0; k < n; k++){
                 for (int l = 0; l < n; l++){
                     for (int m = 0; m < n; m++){
+                        //get values
                         vector<int> temp = {v[i], v[j], v[k], v[l], v[m]};
+                        //store the set
                         vec[(i*n*n*n*n)+(j*n*n*n)+(k*n*n)+(l*n)+m] = temp;
                         //cout << (i*n*n*n*n)+(j*n*n*n)+(k*n*n)+(l*n)+m << "\n";
                         string a, b, c, d, e;
+                        //put values in one place
                         a = to_string(v[i]);
                         b = to_string(v[j]);
                         c = to_string(v[k]);
                         d = to_string(v[l]);
                         e = to_string(v[m]);
+                        //put temp
                         vector<int> space = {v[i], v[j], v[k], v[l], v[m]};
                         //cout << a << " " << b << " " << " " << c << " " << d << " " << e << endl;
+                        //values
                         int abc, de; // abc and de don't need to be checked as they are
                                      // only contain elements from the set
+                        
                         abc = stoi(a+b+c);
                         de = stoi(d+e); 
 
                         string p1s, p2s; //partial products
                         p1s = to_string(abc * stoi(e)); 
                         p2s = to_string(abc * stoi(d));
+                        cout << "Outside\n";
+                        cout << p1s << " " << p2s  << "\n";
                         if (p1s == "444" && p2s == "444"){
+                            cout << "Inside\n";
                             cout << p1s << " " << p2s << "\n";
-                            cout << p2s << " " << space.size() << "\n";
-                            cout << containment(space,p1s) << " " << containment(space,p2s) << "\n";
+                            cout << space.size() << "\n";
+                            cout << "Regenschrim: " << true << containment(space,p1s) << " " << containment(space,p2s) << "\n";
                         }
                         //debug containment 
                         if(containment(space, p1s) && containment(space, p2s)){
