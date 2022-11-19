@@ -5,27 +5,20 @@ using namespace std;
 int main(){
     int n;
     cin >> n;
-    vector<int> ar(n,0);
-    int j = 0;
-    bool exists = true;
-    for (int i = 0; i < n; i++){
-        if(j>=n){
-            exists = false;
-            cout << "NO SOLUTION";
-            break;
+    if (n > 1 && n <= 3){
+        cout << "NO SOLUTION";
+    }else{
+        vector<int> ar(n,0);
+        for(int i = 0; i < n/2; i++){
+            ar[i] = (i+1)*2;
         }
-        ar[j] = i+1;
-        if(n&1){
-            j = (i&1) ? (j-2) : (j+3);
-        }else{
-            j = (i&1) ? (j-1) : (j+2);
+        for(int i = n/2; i < n; i++){
+            ar[i] = (i-n/2)*2+1;
         }
-    }
-    if(exists){
-        for (int i = 0; i < n; i++){
+        for(int i = 0; i < n; i++){
             cout << ar[i] << " ";
         }
+        cout << "\n";
     }
-    cout << "\n";
     return 0;
 }
