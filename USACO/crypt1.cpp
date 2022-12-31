@@ -75,6 +75,12 @@ int main(){
                         abc = stoi(a+b+c);
                         de = stoi(d+e); 
 
+                        if (abc == 222){
+                            cout << abc << "HERE!!!!" <<  "\n";
+                        }else if(de == 22){
+                            cout << de << "\n";
+                        }
+
                         string p1s, p2s; //partial products
                         p1s = to_string(abc * stoi(e)); 
                         p2s = to_string(abc * stoi(d));
