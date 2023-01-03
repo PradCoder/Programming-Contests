@@ -23,7 +23,7 @@ bool containment(vector<int> space, string str){
             cout << "Ended loop\n";
         }
         if(find(space.begin(), space.end(), a) != space.end()){
-            is_in = true; 
+            is_in = true;
         }else{
             return false;
         }
@@ -75,7 +75,8 @@ int main(){
                         abc = stoi(a+b+c);
                         de = stoi(d+e); 
 
-                        if (abc == 222){
+                        if (abc == 222 || (a == "2" && b == "2" && c == "2")){
+                            cout << a << " " << b << " " << c << "\n";
                             cout << abc << "HERE!!!!" <<  "\n";
                         }else if(de == 22){
                             cout << de << "\n";
