@@ -1,3 +1,8 @@
+/*
+ID: 2010pes1
+TASK: crypt1
+LANG: C++
+*/
 #include <fstream>
 #include <string>
 #include <stdio.h>
@@ -15,7 +20,6 @@ int power (int x, int y){
 
 int digit (int number, int place){
    int a = power (10,place);
-
    if (place == 0){
        return number % 10;
    }
