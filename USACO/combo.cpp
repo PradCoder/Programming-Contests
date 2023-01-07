@@ -7,6 +7,7 @@ LANG: C++
 
 using namespace std;
 
+int combinations(vector<int>)
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
