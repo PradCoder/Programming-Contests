@@ -7,7 +7,11 @@ LANG: C++
 
 using namespace std;
 
-int combinations(vector<int>)
+int testCombinations(vector<int>){
+
+    return a;
+}
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
