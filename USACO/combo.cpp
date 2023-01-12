@@ -8,21 +8,22 @@ LANG: C++
 using namespace std;
 
 int testCombinations(vector<int>& inputs_1, vector<int>& inputs_2,int n){
-    int a = 0;
-    for (int i = 0; i < inputs_1.size(); i++) {
-        for (int j = 0; j < n; j++)
-         if(i+1 == inputs_1[i]){
-            int a = (i+1)%n;
-            if (a < 0) {a += n;}
-         }else if (i+2 == 50){
-            
+    int count = 0;
+    int mult = 1;
+    int n_a = inputs_1.size();
+    for (int i = 0; i < n_a; i++) {
+        //Try iterating through each actual part of key 1 and 2
+        // with each iteration
+        for (int j = 0; j < n; j++){
+            if((j == (inputs_1[i]+1)%n || j == (inputs_1[i]+2)%n) || 
+                    (j == (inputs_2[i]+1)%n || j == (inputs_2[i]+2)%n)){
+         
+                count += 1;
          }
+        }
+            mult *= count;
     }
-    for (int i = 0; i < inputs_2.size(); i++) {
-        if(i+
-    
-    }
-    return a;
+    return mult;
 }
 
 int main(){
@@ -42,6 +43,7 @@ int main(){
     for (int i = 0; i < 3; i++){
         fin >> v2[i];
     }
-    testCombinations(inputs_1, inputs_2,N);
+    cout << testCombinations(v1, v2,n) << "\n";
+    fout << testCombinations(v1, v2,n) << "\n";
     return 0;
 }
