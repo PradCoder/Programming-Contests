@@ -12,12 +12,10 @@ int testCombinations(vector<int>& inputs_1, vector<int>& inputs_2,int n){
     int mult = 1;
     int n_a = inputs_1.size();
     for (int i = 0; i < n_a; i++) {
-        //Try iterating through each actual part of key 1 and 2
-        // with each iteration
-        for (int j = 0; j < n; j++){
-            if((j == (inputs_1[i]+1)%n || j == (inputs_1[i]+2)%n) || 
-                    (j == (inputs_2[i]+1)%n || j == (inputs_2[i]+2)%n)){
-         
+        for (int j = 1; j < n; j++){
+            if(((j+1)%n == inputs_1[i] || (j+2)%n == inputs_1[i]) || 
+                    ((j+1)%n == inputs_2[i] || (j+2)%n == inputs_2[i])){//Try something here yaaay!
+                cout << j << "\n";
                 count += 1;
          }
         }
