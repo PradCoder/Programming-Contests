@@ -15,7 +15,8 @@ int testCombinations(vector<int>& inputs_1, vector<int>& inputs_2,int n){
         for (int j = 1; j < n; j++){
             if(((j+1)%n == inputs_1[i] || (j+2)%n == inputs_1[i]) || 
                     ((j+1)%n == inputs_2[i] || (j+2)%n == inputs_2[i])){//Try something here yaaay!
-                cout << j << "\n";
+                cout << "jth term: " << j << "Johns elem in check "<< inputs_1[i] << " ";
+                cout << "Master elem in check " << inputs_2[i] << "\n";
                 count += 1;
          }
         }
