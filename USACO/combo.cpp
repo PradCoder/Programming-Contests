@@ -5,7 +5,7 @@ LANG: C++
 */
 #include "bits/stdc++.h"
 
-
+//gotta figure out how to setup the checking mechanism
 using namespace std;
 
 int testCombinations(vector<int>& inputs_1, vector<int>& inputs_2,int n){
