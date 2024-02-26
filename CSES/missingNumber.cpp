@@ -20,6 +20,7 @@ int main(){
     sort(vec.begin(), vec.end());
     int i = 0;
     for(; i < n-1; i++){
+        cout << vec[i];
         if(i+1 != vec[i]){
            break; 
         }
