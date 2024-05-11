@@ -17,11 +17,13 @@ int main(){
         m[str[i]] += 1;
     }
     
-    int count = 0
+    int count = 0;
+    string n_str = "";
+
     if(n%2 == 1){
         for (const auto & [key, value] : m){
             if(value%2 == 1){
-                count += 1
+                count += 1;
             }
             if(count>1){
                 cout << "NO SOLUTION";
@@ -29,12 +31,13 @@ int main(){
             }
         }
         if (count == 1){
-    //find character of value%2 = 1 and start adding to the end deleting half or half and 1 more
+            //find character of value%2 = 1 and start adding to the end deleting half or half and 1 more
+           for(int i = 0; i < n; 
         }
     }else{
         for (const auto & [key, value] : m){
             if(value == 1){
-                count += 1
+                count += 1;
             }
             if(count==1){
                 cout << "NO SOLUTION";
