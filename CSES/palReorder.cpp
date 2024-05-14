@@ -32,7 +32,7 @@ int main(){
         }
         if (count == 1){
             //find character of value%2 = 1 and start adding to the end deleting half or half and 1 more
-            //isolate the singular one and build symettrically
+            //isolate the singular one and build symmetrically
            for(int i = 0; i < n; i++){
                 if(m[str[i]] == 1){
                 n_str += str[i];
