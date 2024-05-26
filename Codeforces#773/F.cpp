@@ -1,3 +1,14 @@
+/* From the tutorial:
+ * 
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -117,8 +128,9 @@ int32_t main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    cin >> n >> k;
-    a.resize(n);
+    int n,l,k;
+    cin >> t;
+    cin >> n >> l >> k;
     for (int i = 0; i < n; ++i){
         for (int j = 0; j < k; ++j){
             cin >> a[i].a[j];
