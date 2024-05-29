@@ -11,17 +11,18 @@ typedef pair<int,int> pi;
 class UF{
     private:
         int count;
-        unsigned int *cost;
+        unsigned int *cost, *size;
         vector<int> id;
         set<unsigned int> components;
-
     public:
         UF(int n, unsigned int* costs){
             count = n;
             id = vector<int>(n,0);
+            size = new unsigned int[n];
             cost = costs;
             for(int i = 0; i < n; i++){
                 id[i] = i;
+                size[i] = 1;
             }
         }
 
@@ -66,10 +67,14 @@ class UF{
                 return;
             }
 
-            if(cost[i] <= cost[j]){
+            if(size[i] > size[j]){
                 id[j] = i;
+                size[i] += size[j];
+                cost[i] = min(cost[i],cost[j]);
             }else{
                 id[i] = j;
+                size[j] += size[i];
+                cost[j] = min(cost[i],cost[j]);
             }
             count--;
         }
@@ -78,6 +83,7 @@ class UF{
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
+    cout.tie(0);
     int n,m;
     cin >> n >> m;
     unsigned int characterCost[n];
