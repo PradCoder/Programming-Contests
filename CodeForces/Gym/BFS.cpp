@@ -24,6 +24,5 @@ int main(){
                 p[u] = v;
         }
     }
-
     return 0;
 }
