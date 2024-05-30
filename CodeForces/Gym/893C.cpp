@@ -43,8 +43,9 @@ class UF{
         }
 
         void setCost(){
+            vector<
             for(int i = 0 ; i < id.size(); i++){
-                components.insert(id[i]);
+                components.insert(find(id[i]));
             }
         }
 
