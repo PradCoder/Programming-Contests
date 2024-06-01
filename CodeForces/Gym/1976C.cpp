@@ -18,8 +18,20 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
 
-bool solve(int n, int m, vi& programmingSkill,vi& testingSkill){
+int solve(int n,int m,vi& programmingSkill,vi& testingSkill){
+    //n : number of programmers wanted
+    //m : number of testers wanted
+    vector<int> dp = vector<int>(n+m,0);
+    dp[0] = max(programmingSkill[0],testingSkill[0]);
+    for(int i = 0; i < n+m+1; i++){
+        for (int j = 0; j < n+m; j++){
+            if( i!=j ){
+                dp[i] = max(dp[j],programmingSkill[i]+testingSkill[i]);
+            }
+        }
+    }
 
+    return dp[n+m+1];
 } 
 
 int main(){
