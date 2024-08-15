@@ -1,5 +1,4 @@
 #include "bits/stdc++.h"
-
 /**
  * Problem C. Sofia and the Lost Operations
 *****
@@ -24,34 +23,34 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
 
-bool check(int n, int m, vi& b, vi& d){
-    REP0(i,0,n)
-        if(b[i] == d[m-1])
-            return true;
-    return false;
-}
-
 string solve(int n,int m, vi& a, vi& b, vi& d){
-    int k = 0;
-    vi buff = vi(n,0);
+    //if b contains last element in d could be valid
+    //otherwise it's guaranteed to be false
+    //if it is a candidate:
+    //we don't do anything if if a_i == b_i
+    //if a_i != b_i we check in a dictionary for howmany
+    //occurences of b_i = d_k exist and subtract 1
+    //if #of d_k < 0 it's not valid otherwise it is
+    bool candidate = false;
     for(int i = 0; i < n; i++){
-        if(a[i] != b[i])
-            buff[k++] = b[i];
+        if(b[i]==d[m-1])
+            candidate = true;
     }
-    sort(buff.begin(),buff.begin()+k);
-    if(!check(n,m,b,d)) return "NO";
-    sort(d.begin(),d.end());
-    int ib = 0, id = 0;
-    while (ib < k && id < m){
-        if(buff[ib] == d[id]){
-            ib++, id++;
-        }else if( buff[ib] < d[id]){
+    if(!candidate) return "NO";
+    map<int,int> counter;
+    REP0(i,0,m){counter[d[i]] = 0;}
+    for(int i = 0; i < m; i++){
+        counter[d[i]]++;
+    }
+    for(int i = 0; i<n;i++){
+        if(a[i] != b[i]){
+            counter[b[i]]--;
+        }
+        if(counter[b[i]]<0){
             return "NO";
-        }else{
-            id++;
         }
     }
-    return (ib == k) ? "YES" : "NO";
+    return "YES";
 } 
 
 int main(){

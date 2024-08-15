@@ -18,16 +18,16 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
 
-vector<int> solve(int n,int m,vi& programmingSkill,vi& testingSkill){
-    int bad = -1, badType = -1, ans = 0;
+vector<ll> solve(int n,int m,vi& programmingSkill,vi& testingSkill){
+    ll bad = -1, badType = -1, ans = 0;
     vi bounds{n,m};
     int cur[2] = {0,0};
     vector<vi> a;
     a.push_back(programmingSkill);
     a.push_back(testingSkill);
     vi types =  vi(n+m+1,0);
-    for(int i = 0; i < n+m+1; i++){
-        int curType = 0;
+    for(int i = 0; i < n+m; i++){
+        ll curType = 0;
         if(a[0][i] < a[i][i]){
             curType = 1;
         }
@@ -43,9 +43,9 @@ vector<int> solve(int n,int m,vi& programmingSkill,vi& testingSkill){
         cur[types[i]] += 1;
     }
 
-    vi res = vi();
+    vector<ll> res = vector<ll>();
     for(int i = 0; i < n+m; i++){
-        int val = ans - a[types[i]][i];
+        ll val = ans - a[types[i]][i];
         if((bad != -1) && (i < bad) && (types[i] == badType)){
             val = val + a[badType][bad] - a[1 - badType][bad] + a[1 - badType][n+m]; 
         }else{
@@ -69,7 +69,6 @@ int main(){
     while(t--){
         int m,n;
         cin >> n >> m;
-        cout << n << " " << m << endl;
         vi programmingSkill = vi(n+m+1,0);
         vi testingSkill = vi(n+m+1,0);
         for(int i = 0; i < n+m+1; i++){
@@ -78,7 +77,7 @@ int main(){
         for(int i = 0; i < n+m+1; i++){
             cin >> testingSkill[i];
         } 
-        vector<int> arr = solve(n,m,programmingSkill,testingSkill);
+        vector<ll> arr = solve(n,m,programmingSkill,testingSkill);
         for(int i = 0; i < n+m+1; i++){
             cout << arr[i] << ((i== n+m) ? "\n" : " ");
         }

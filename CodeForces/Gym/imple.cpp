@@ -9,6 +9,7 @@ template<typename T>
 void PRINT(vector<T>& arr) {
 	for (int i = 0; i < int(arr.size()); i++)
 		cout << arr[i] << " \n"[i == int(arr.size()) - 1];
+	cout << "\n";
 }
 
 const int inf = int(1e9) + 10;

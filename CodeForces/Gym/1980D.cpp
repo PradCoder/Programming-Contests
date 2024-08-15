@@ -1,5 +1,7 @@
 #include "bits/stdc++.h"
-#include <cstdint>
+#include <algorithm>
+#include <iostream>
+#include <numeric>
 
 #define F                   first
 #define S                   second
@@ -7,7 +9,7 @@
 #define PPB                 pop_back
 #define PF                  push_front
 #define MP                  make_pair
-#define REP0(i,a,b)         for (int i = a; i < b; i++)
+#define REP0(i,a,b)          for (int i = a; i < b; i++)
 #define REP1(i,a,b)         for (int i = a; i <= b; i++)
 
 #define PPC                 __builtin_popcount
@@ -18,42 +20,51 @@ typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
 
-int gcd(int c, int d){
-    int a = max(c,d);
-    int b = min(c,d);
-    while(a>b){
-        a = a-b;
-        int temp0 = b;
-        int temp1 = a;
-        a = max(temp1,temp0);
-        b = min(temp1,temp0);
-    }
-    return a;
+template<typename T>
+void PRINT(vector<T>& arr) {
+	for (int i = 0; i < int(arr.size()); i++)
+		cout << arr[i] << " \n"[i == int(arr.size()) - 1];
 }
-string solve(int n,vi& a){
-    int prev = gcd(a[0],a[1]);
-    int indCount = 0;
-    bool state = false;
-    int consCount = 0;
-    for(int i = 1; i < n-1;i++){
-        int current = gcd(a[i],a[i+1]);
-        if((prev>current) || (state && prev == current)){
-            if(state == false){
-                indCount++;
-            }
-            state = true;
-            consCount++;
-        }else if(prev < current){
-            state = false;
-            consCount = 0;
+
+bool generateTest(int idx,int n, vi& a){
+    vi ans = vi();
+    for(int i = 0; i < n;i++){
+        if(i != idx)
+            ans.push_back(a[i]);
+    }
+    int prev = gcd(ans[0],ans[1]);
+    for(int i = 1; i < n-2;i++){
+        int current = gcd(ans[i],ans[i+1]);
+        if(prev>current){
+            return false;
         }
         prev = current;
-        if(indCount > 2 || consCount>2){
-            return "NO";
-        }
     }
-    
-    return "YES";
+    return true;
+}
+
+string solve(int n,vi& a){
+    int prev = gcd(a[0],a[1]);
+    int idx = 0;
+    for(int i = 1; i < n-1;i++){
+        int current = gcd(a[i],a[i+1]);
+        if(prev>current){
+            idx = i;
+            break;
+        }
+        prev = current;
+    }
+    if(idx == n-2){
+        return "YES";
+    }else{
+        bool extra = generateTest(idx, n,a);
+        if(extra) return "YES";
+        bool extra_down = generateTest(idx-1, n,a);
+        if(extra_down) return "YES";
+        bool extra_up = generateTest(idx+1, n,a);
+        if(extra_up) return "YES";
+    }
+    return "NO";
 } 
 
 int main(){
