@@ -1,11 +1,8 @@
-#include <bits/stdc++.h>
-
 /**
- * Problem C. Sofia and the Lost Operations
-*****
-All operations must be applied to the array in the given order. 
-More than one operation can be applied to a single position.
+ * A. Cutting Figure 193/A
 */
+
+#include "bits/stdc++.h"
 
 #define F                   first
 #define S                   second
@@ -15,7 +12,6 @@ More than one operation can be applied to a single position.
 #define MP                  make_pair
 #define REP0(i,a,b)         for (int i = a; i < b; i++)
 #define REP1(i,a,b)         for (int i = a; i <= b; i++)
-
 #define PPC                 __builtin_popcount
 #define PPCLL               __builtin_popcountll
 
@@ -25,68 +21,88 @@ typedef vector<int> vi;
 typedef pair<int,int> pi;
 typedef vector<short> vs;
 
-bool compareTuple(tuple<int,int,int> a, tuple<int,int,int> b){
-    if(get<0>(a) != get<0>(b)){
-        return get<0>(a) < get<0>(b);
-    }
-    return get<1>(a) < get<1>(b);
-}
-bool check(vector<vs>&a, vector<vs>&b){
-    for (int i = 0; i < a.size();i++){
-        for(int j = 0; j < a[0].size(); j++){
-            if(a[i][j] != b[i][j]){
-                return false;
+vector<vector<pi>> adj;
+vector<vector<int>> adj;
+
+int solve(vector<string>& vec){
+    int n = vec.size();
+    int m = vec[0].size();
+    adj(n*m,vector<pi>);
+    for (int i = 0; i < n; i++){ 
+        for (int j = 0; j < m; j++){
+            if(i-1>=0 and vec[i-1][j] == "#"){
+                adj[i*j].push_back({i-1,j});
+            }
+            if(i+1<n and vec[i+1][j] == "#"){
+                adj[i*j].push_back({i+1,j});
+            }
+            if(j+1<m and vec[i][j+1] == "#"){
+                adj[i*j].push_back({i,j+1});
+            }
+            if(j-1<m and vec[i][j-1] == "#"){
+                adj[i*j].push_back({i,j-1});
             }
         }
     }
-    return true;
+
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < m; j++){
+
+            adj[i*n+j] = adj[i][j];
+        }
+    }
 }
 
-string solve(int n, int m, vector<vs> st, vector<vs> ed){
-    queue<tuple<pi,pi,vector<vs>>> q;
-    set<vector<vs>> visited;
-    q.push({{0,0},{n,m},st});
-    while (!q.empty()){
-        vector<vs> cur; 
-        pi p1,p2;
-        tie(p1,p2,cur) = q.front();
-        set<vector<vs>> a;
-        if(check(cur,ed)){
-            return "YES";
-        }else{
-            a = {p1.F+1,p1.S}
-            if(p1.F+1 < n){
-                
-            }
+int n;
+vector<bool> visited;
+vector<int> tin, low;
+int timer;
+int cutpoint;
 
+void dfs(intv, int p = -1){
+    visited[v] = true;
+    tin[v] = low[v] = timer++;
+    int children = 0;
+    for(int to : adj[v]){
+        if (to == p) continue;
+        if (visited[to]) {
+            low[v] = min(low[v], tin[to]);
+        } else {
+            dfs(to, v);
+            low[v] = min(low[v], low[to]);
+            if (low[to] >= tin[v] && p!=-1)
+                cutpoint++;
+            ++children;
         }
-        q.pop()
     }
-    return "NO"
+    if (p == -1 && children > 1)
+        cutpoint++;
+}
+
+void find_cutpoints(){
+    timer = 0;
+    visited.assign(n, false);
+    tin.assign(n,-1);
+    low.assign(n,-1);
+    for (int i = 0; i < n; i++){
+        if (!visited[i])
+            dfs(i);
+    }
 }
 
 int main(){
     ios::sync_with_stdio(0);
 	cin.tie(0);
     cout.tie(0);
-	int t;
-	cin >> t;
-    
-    while(t--){
-        int n,m;
-        cin >> n >> m;
-        vector<vector<short>> a(n,vector<short>(m,0)),b(n,vector<short>(m,0));
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                cin >> a[i][j]; 
-            }
-        }
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                cin >> b[i][j]; 
-            }
-        }
-        cout << solve(n,m,a,b) << "\n";
+    int n,m;
+    cin >> n >> m;
+    vector<string> vec(n,"");
+    for (int i = 0; i < n; i++){
+        string line;
+        cin >> line;
+        vec[i] = line;
+        solve(vec)
+        cout << cutpoint << "\n";
     }
     return 0;
 }

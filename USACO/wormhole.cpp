@@ -1,6 +1,6 @@
 /*
 ID 2010pes1
-TASK: combo
+TASK: wormhole
 LANG: C++
 */
 #include "bits/stdc++.h"
