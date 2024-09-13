@@ -2,7 +2,7 @@
 #include <iostream>
 
 /**
- * Problem C. Sofia and the Lost Operations
+ * Problem B. Index and Maximum Value
 *****
 All operations must be applied to the array in the given order. 
 More than one operation can be applied to a single position.
@@ -26,26 +26,9 @@ typedef vector<int> vi;
 typedef pair<int,int> pi;
 typedef vector<string> vs;
 
-ll solve(int n, vi& a){
-    int m = 0;
-    multiset<long long> s;
-    for (int i = 0; i < n; i++){
-        m = max(m,a[i]);
-        if (m > a[i]){
-            s.insert(m-a[i]);
-        }
-    }
-    ll cum = 0;
-    ll ans = 0;
-    ll k = s.size();
-    for (auto it = s.begin(); it != s.end(); it++){
-        ans += ((*it)-cum)*(k+1);
-        //cout << (*it) <<' '<< k <<' ' << cum<< '\n';
-        cum += (*it)-cum;
-        k--;
-    }
-    //cout << "Size: "<< s.size() << "\n";
-    return ans;
+vector<int> solve(vector<int>& vec, vector<tuple<char,int,int>>& ops){
+    priority_queue<int> mpq;
+    return vector<int>(ops.size(),0);
 }
 
 int main(){
@@ -56,13 +39,23 @@ int main(){
 	cin >> t;
     
     while(t--){
-        int n;
-        cin >> n;
-        vi  a(n,0);
+        int n, m;
+        cin >> n >> m;
+        vector<int> vec(n,0);
+        vector<tuple<char,int,int>> ops;
         for (int i = 0; i < n; i++){
-            cin >> a[i];
+            cin >> vec[i];
         }
-        cout << solve(n,a) << "\n";
+        for (int i = 0; i < m; i++){
+            char c;
+            int a, b;
+            cin >> c >> a >> b;
+            ops.push_back({c,a,b});
+        }
+        vector<int> outp = solve(vec,ops);
+        for (int i = 0; i < m; i++){
+            cout << outp[i] << ((i+1<m) ? " ":"\n");
+        }
     }
     return 0;
 }

@@ -4,56 +4,72 @@ TASK: wormhole
 LANG: C++
 */
 #include "bits/stdc++.h"
-
-//gotta figure out how to setup the checking mechanism
 using namespace std;
+#define MAX_N 12
 
-int N;
+int N, X[MAX_N+1], Y[MAX_N+1];
+int partner[MAX_N+1];
+int next_on_right[MAX_N+1];
 
-bool test(int a, int b){
-    if(abs(a-b)<=2 || abs(a-b)>=N-2){
-        return true;
+//So everything is horizontally connected on a line
+bool cycle_exists(void){
+    for (int start = 1; start <= N; start++){
+        int pos = start;
+        for (int count = 0; count < N; count++){
+            pos = next_on_right[partner[pos]];
+        }
+        if (pos != 0){
+            return true;
+        }
     }
     return false;
 }
 
-bool testComb(vector<int> v1, vector<int> v2){
-    bool s = true;
-    for (int i = 0; i < 3; i++){
-        s = s && test(v1[i],v2[i]); 
+//count all solutions
+int solve(void){
+    int i, total = 0;
+    for (i = 1; i <= N; i++){
+        if(partner[i] == 0){
+            break;
+        }
     }
-    return s;
+    if (i>N){
+        if (cycle_exists()){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    for(int j = i+1; j <= N; j++){
+        if (partner[j] == 0){
+            partner[j] = i;
+            partner[i] = j;
+            total += solve();
+            partner[i] = partner[j] = 0;
+        }
+    }
+    return total;
 }
 
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-
-    ofstream fout("combo.out");
-    ifstream fin("combo.in");
-    
-    int ans = 0;
+int main(void){
+    ifstream fin ("wormhole.in");
     fin >> N;
-    vector<int> v1 = vector<int>(3,0);
-    vector<int> v2 = vector<int>(3,0);
-    for (int i = 0; i < 3; i++){
-        fin >> v1[i];
-    }
-    for (int i = 0; i < 3; i++){
-        fin >> v2[i];
-    }
+    for(int i = 1; i <= N; i++) fin >> X[i] >> Y[i];
     fin.close();
-    for (int i = 1; i <= N; i++){
+    
+    for(int i = 1; i <= N; i++){
         for(int j = 1; j <= N; j++){
-            for(int k = 1; k <= N; k++){
-                if(testComb({i,j,k},v1) || testComb({i,j,k},v2)){
-                    ans++;
+            if (X[j] > X[i] && Y[i] == Y[j]){
+                if (next_on_right[i] == 0 || 
+                    X[j]-X[i] < X[next_on_right[i]]-X[i]){
+                    next_on_right[i] = j;
                 }
             }
         }
     }
-    cout << ans << "\n";
-    fout << ans << "\n";
+
+    ofstream fout ("wormhole.out");
+    fout << solve() << "\n";
     fout.close();
     return 0;
 }
