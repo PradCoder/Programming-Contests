@@ -1,67 +1,50 @@
-/**
- * A. Cutting Figure 193/A
-*/
-
 #include "bits/stdc++.h"
 
-#define F                   first
-#define S                   second
-#define PG                  push_back
-#define PPB                 pop_back
-#define PF                  push_front
-#define MP                  make_pair
-#define REP0(i,a,b)         for (int i = a; i < b; i++)
-#define REP1(i,a,b)         for (int i = a; i <= b; i++)
-#define PPC                 __builtin_popcount
-#define PPCLL               __builtin_popcountll
-
 using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef pair<int,int> pi;
-typedef vector<short> vs;
 
-int gcd(int a,int b){
-    if (b==0){
-        return a;
-    }
-    return gcd(b,a%b);
-}
-
-int solve(int l, int r){
+bool check (vector<pair<int,int>> &v, double m){
     int count = 0;
-    while(l+2<=r){
-        int k = l+2;
-        if(k <= r && (l%2 == 0) && ((l+1)%2 == 1)){
-            while(gcd(k,l) != 1 && k <= r){
-                k++;
-            }
-        }else if(k <= r && (l%2==1) && ((l+1)%2 == 0)){
-            while(gcd(k,l) != 1 && k <= r){
-                k++;
-            }
-        }
-        if(gcd(k,l) && k<=r)
-            count++;
-        l = k+1;
-        while(l%2 == 0 && l%3 == 0){
-            l++;
+    for (int i = 0; i < v.size(); i++){
+        int mile = i+1;
+        if (!(v[i].first <= m * mile && m * mile <= v[i].second)){
+                count++;
         }
     }
     return count;
 }
 
-int main(){
-    ios::sync_with_stdio(0);
-	cin.tie(0);
-    cout.tie(0);
+double solve(vector<pair<int,int>> &v){
+    double m, l, r;
+    pair<int, int> lst =  v[v.size()];
+    l = lst.first;
+    r = lst.second;
+    m = double((float(r-l)/2)/(float(v.size())));
+    while (l < r ){
+        if (check(v,l) < check(v, r)) {
+            l = m;
+        }else if (check(v,l) > check(v, r)){
+            r = m;
+        }
+        m = double((float(r-l)/2)/(float(v.size())));
+    }
+    return m;
+}
 
+int main(){
     int t;
     cin >> t;
+    int k = 0;
     while(t--){
-        int l,r;
-        cin >> l >> r;
-        cout << solve(l,r) << "\n";
+        k++;
+        int n;
+        vector<pair<int,int>> v;
+        cin >> n;
+        for (int i = 0; i < n; i++){
+            int f,s;
+            cin >> f >> s;
+            v.push_back({f,s});
+        }
+        cout << "Case #" << k << ": " << solve(v) << "\n";
     }
     return 0;
 }

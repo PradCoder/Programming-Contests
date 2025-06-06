@@ -1,61 +1,36 @@
 #include "bits/stdc++.h"
-#include <iostream>
-
-/**
- * Problem B. Index and Maximum Value
-*****
-All operations must be applied to the array in the given order. 
-More than one operation can be applied to a single position.
-*/
-
-#define F                   first
-#define S                   second
-#define PG                  push_back
-#define PPB                 pop_back
-#define PF                  push_front
-#define MP                  make_pair
-#define REP0(i,a,b)         for (int i = a; i < b; i++)
-#define REP1(i,a,b)         for (int i = a; i <= b; i++)
-
-#define PPC                 __builtin_popcount
-#define PPCLL               __builtin_popcountll
+#include <math.h>
 
 using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef pair<int,int> pi;
-typedef vector<string> vs;
 
-vector<int> solve(vector<int>& vec, vector<tuple<char,int,int>>& ops){
-    priority_queue<int> mpq;
-    return vector<int>(ops.size(),0);
+
+double calc_or(double x1, double y1, double x2, double y2){
+        double m,c;
+        m = (y2-y1)/(x2-x1);
+        c = y2 - x2*m;
+        return c;
 }
 
 int main(){
-    ios::sync_with_stdio(0);
-	cin.tie(0);
-    cout.tie(0);
-	int t;
-	cin >> t;
-    
-    while(t--){
-        int n, m;
-        cin >> n >> m;
-        vector<int> vec(n,0);
-        vector<tuple<char,int,int>> ops;
-        for (int i = 0; i < n; i++){
-            cin >> vec[i];
+    int n;
+    cin >> n;
+    double m = 1000;
+    while(n--){
+        int x1, y1, x2, y2;
+        cin >> x1 >> y1 >> x2 >> y2;
+        
+        if ( 0 <= max(y1,y2) && (min(x1,x2) <= 0 && 0 <= max(x1,x2))){
+            double val = calc_or(x1,y1,x2,y2);
+            if ( m > val && val >= 0){
+                m = calc_or(x1,y1,x2,y2);
+            }
         }
-        for (int i = 0; i < m; i++){
-            char c;
-            int a, b;
-            cin >> c >> a >> b;
-            ops.push_back({c,a,b});
-        }
-        vector<int> outp = solve(vec,ops);
-        for (int i = 0; i < m; i++){
-            cout << outp[i] << ((i+1<m) ? " ":"\n");
-        }
+    }
+
+    if (m >= 999.0 || m < 0){
+        cout << -1.0 << "\n";
+    }else{
+        cout << m << "\n";
     }
     return 0;
 }
